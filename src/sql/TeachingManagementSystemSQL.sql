@@ -1,17 +1,19 @@
 
+DROP TABLE IF EXISTS STAFF CASCADE;
 create table STAFF(
 	STAFFID varchar(20) not null primary key,
 	PASSWORD varchar(20),
 	NAME varchar(20),
-	CLASS char(3),
 	KFLAG char(1)
 );
 
+DROP TABLE IF EXISTS CLASSLIST CASCADE;
 create table CLASSLIST(
 	CLASSCD char(3) primary key,
 	NAME varchar(20) not null
 );
 
+DROP TABLE IF EXISTS STAFFTOCLASS CASCADE;
 create table STAFFTOCLASS(
 	STAFFID varchar(20) not null,
 	CLASSCD char(3) not null,
@@ -20,6 +22,7 @@ create table STAFFTOCLASS(
 	foreign key (CLASSCD) references CLASSLIST(CLASSCD)
 );
 
+DROP TABLE IF EXISTS STUDENT CASCADE;
 create table STUDENT(
 	STUDENTID varchar(10) not null primary key ,
 	NAME varchar(10) ,
@@ -29,6 +32,9 @@ create table STUDENT(
 	DROPFLAG boolean default FALSE
 );
 
+
+DROP TABLE IF EXISTS CLASS;
+DROP TABLE IF EXISTS CLASSROSTER CASCADE;
 create table CLASSROSTER(
 	ID serial primary key ,
 	CLASSCD char(3) not null ,
@@ -38,6 +44,7 @@ create table CLASSROSTER(
 	foreign key (STUDENTID) references STUDENT(STUDENTID)
 );
 
+DROP TABLE IF EXISTS SUBJECT CASCADE;
 create table SUBJECT(
 	SUBJECTCD char(3) not null primary key,
 	SUBJECTNAME varchar(20),
@@ -45,6 +52,7 @@ create table SUBJECT(
 	CLOSINGDATE date
 );
 
+DROP TABLE IF EXISTS SCORE CASCADE;
 create table SCORE(
 	STUDENTID varchar(10) not null,
 	SUBJECTCD varchar(30) not null,
@@ -57,11 +65,13 @@ create table SCORE(
 	foreign key (SUBJECTCD) references SUBJECT(SUBJECTCD)
 );
 
+DROP TABLE IF EXISTS ATTENDANCENAME CASCADE;
 create table ATTENDANCENAME(
 	ATTENDANCE char(2) not null primary key ,
 	ATTENDANCENAME varchar(10)
 );
 
+DROP TABLE IF EXISTS ATTENDANCE CASCADE;
 create table ATTENDANCE(
 	STUDENTID varchar(10) not null,
 	ATTENDANCE char(2)  default 0,
@@ -73,11 +83,13 @@ create table ATTENDANCE(
 	foreign key (ATTENDANCE) references ATTENDANCENAME(ATTENDANCE)
 );
 
+DROP TABLE IF EXISTS NOTIFICATIONNAME CASCADE;
 create table NOTIFICATIONNAME(
 	NOTIFICATION int primary key,
 	NOTIFICATIONNAME varchar(10)
 );
 
+DROP TABLE IF EXISTS NOTIFICATION CASCADE;
 create table NOTIFICATION(
 	STUDENTID varchar(10),
 	NOTIFICATION int,
