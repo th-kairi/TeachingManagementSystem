@@ -12,7 +12,6 @@ public class Staff implements Serializable {
 	private String staffID;
 	private String password;
 	private String name;
-	private String classInCharge;
 	private String kFlag;
 
 	public String getStaffID() {
@@ -33,19 +32,11 @@ public class Staff implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getClassInCharge() {
-		return classInCharge;
-	}
-	public void setClassInCharge(String classInCharge) {
-		this.classInCharge = classInCharge;
-	}
 	public String getkFlag() {
 		return kFlag;
 	}
 	public void setkFlag(String kFlag) {
 		this.kFlag = kFlag;
 	}
-
-
 
 }
