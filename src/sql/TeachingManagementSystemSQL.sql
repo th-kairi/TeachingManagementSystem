@@ -25,7 +25,7 @@ create table STUDENT(
 	NAME varchar(10) ,
 	SEX char(2) ,
 	STUDENTTEL varchar(15) ,
-	PAIRENTTEL varchar(15) ,
+	PARENTTEL varchar(15) ,
 	DROPFLAG boolean default FALSE
 );
 
