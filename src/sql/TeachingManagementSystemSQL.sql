@@ -29,7 +29,7 @@ create table STUDENT(
 	DROPFLAG boolean default FALSE
 );
 
-create table CLASS(
+create table CLASSROSTER(
 	ID serial primary key ,
 	CLASSCD char(3) not null ,
 	NAME varchar(20),
