@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 /**
  * CLASSROSTERのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
-public class Classroster implements Serializable {
+public class ClassRoster implements Serializable {
 	/**
 	 * ID
 	 */
@@ -17,12 +17,24 @@ public class Classroster implements Serializable {
 	/**
 	 * クラスコード
 	 */
-	private int classCD;
+	private String classCD;
+
+	/**
+	 * コース名
+	 */
+	private String name;
 
 	/**
 	 * 学籍番号
 	 */
 	private String studentID;
+
+    public ClassRoster(int id, String classCD, String name, String studentID) {
+        this.id = id;
+        this.classCD = classCD;
+        this.name = name;
+        this.studentID = studentID;
+    }
 
 	public int getId() {
 		return id;
@@ -32,13 +44,21 @@ public class Classroster implements Serializable {
 		this.id = id;
 	}
 
-	public int getClassCD() {
+	public String getClassCD() {
 		return classCD;
 	}
 
-	public void setClassCD(int classCD) {
+	public void setClassCD(String classCD) {
 		this.classCD = classCD;
 	}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 	public String getStudentID() {
 		return studentID;

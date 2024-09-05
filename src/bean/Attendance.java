@@ -35,6 +35,14 @@ public class Attendance implements Serializable {
 	 */
 	private boolean point;
 
+    public Attendance(String studentId, String attendance, String atReason, Date atDate, boolean point) {
+        this.studentID = studentId;
+        this.attendance = attendance;
+        this.atReason = atReason;
+        this.atDate = atDate;
+        this.point = point;
+    }
+
 	public String getStudentID() {
 		return studentID;
 	}

@@ -1,48 +1,84 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import bean.Attendance;
 
+/**
+ *
+ * AttendanceのDAO
+ *
+ * @author admin
+ *
+ */
 public class AttendanceDAO extends DAO {
-	public List<Attendance> all()  throws Exception{
-		List<Attendance> list = new ArrayList<Attendance>();
 
-		// データベースに接続
-		Connection con = getConnection();
+	// 全件検索
+	public List<Attendance> all() throws Exception {
+		List<Attendance> attendanceList = new ArrayList<>();
+		String sql = "SELECT * FROM public.attendance";
 
-		// 実行したいSQL文をプリペアードステートメントで準備
-		PreparedStatement st = con.prepareStatement(
-				"select * from attendance");
-		// SQL文を実行した結果をリザルトセットに格納
-		ResultSet rs = st.executeQuery();
+		// リソースの解放:
+		// try-with-resources構文を使用して、StatementやPreparedStatement、ResultSetなどのリソースを自動的に閉じる
+		try (Connection conn = getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
 
-		// 結果から1件ずつ取り出すループ
-		while (rs.next()) {
-			// Attendanceクラスをインスタンス化
-			Attendance atten = new Attendance();
-			// 値をセット
-			atten.setStudentID(rs.getString("studentid"));
-			atten.setAttendance(rs.getString("attendance"));
-			atten.setAtReason(rs.getString("atreason"));
-			atten.setAtDate(rs.getDate("stdate"));
-			atten.setPoint(rs.getBoolean("point"));
-			// リストに追加
-			list.add(atten);
+			while (rs.next()) {
+				Attendance attendance = new Attendance(rs.getString("studentid"), rs.getString("attendance"),
+						rs.getString("atreason"), rs.getDate("atdate"), rs.getBoolean("point"));
+				attendanceList.add(attendance);
+			}
 		}
 
-		// データベースとの接続を解除
-		st.close();
-		con.close();
-
-		// 商品リストを返却
-		return list;
-
+		return attendanceList;
 	}
 
+	// データ登録
+	public void insert(Attendance attendance) throws Exception {
+		String sql = "INSERT INTO public.attendance (studentid, attendance, atreason, atdate, point) VALUES (?, ?, ?, ?, ?)";
 
+		try (Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, attendance.getStudentID());
+			pstmt.setString(2, attendance.getAttendance());
+			pstmt.setString(3, attendance.getAtReason());
+			pstmt.setDate(4, new java.sql.Date(attendance.getAtDate().getTime()));
+			pstmt.setBoolean(5, attendance.isPoint());
+			pstmt.executeUpdate();
+		}
+	}
+
+	// データ更新
+	public void update(Attendance attendance) throws Exception {
+		String sql = "UPDATE public.attendance SET attendance = ?, atreason = ?, point = ? WHERE studentid = ? AND atdate = ?";
+
+		try (Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, attendance.getAttendance());
+			pstmt.setString(2, attendance.getAtReason());
+			pstmt.setBoolean(3, attendance.isPoint());
+			pstmt.setString(4, attendance.getStudentID());
+			pstmt.setDate(5, new java.sql.Date(attendance.getAtDate().getTime()));
+			pstmt.executeUpdate();
+		}
+	}
+
+	// データ削除
+	public void delete(String studentId, Date atDate) throws Exception {
+		String sql = "DELETE FROM public.attendance WHERE studentid = ? AND atdate = ?";
+
+		try (Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, studentId);
+			pstmt.setDate(2, new java.sql.Date(atDate.getTime()));
+			pstmt.executeUpdate();
+		}
+	}
 }

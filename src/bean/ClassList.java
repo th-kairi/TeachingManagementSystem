@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * CLASSLISTのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -18,6 +18,11 @@ public class ClassList implements Serializable {
 	 * クラス名
 	 */
 	private String name;
+
+    public ClassList(String classCD, String name) {
+        this.classCD = classCD;
+        this.name = name;
+    }
 
 	public String getClassCD() {
 		return classCD;
