@@ -1,11 +1,11 @@
 package bean;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * NOTIFICATIONのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -13,7 +13,7 @@ public class Notification implements Serializable {
 	/**
 	 * 学籍番号
 	 */
-	private String studentId;
+	private String studentID;
 
 	/**
 	 * 通知種別
@@ -23,14 +23,20 @@ public class Notification implements Serializable {
 	/**
 	 * 通知日
 	 */
-	private LocalDate nDate;
+	private Date nDate;
 
-	public String getStudentId() {
-		return studentId;
+    public Notification(String studentID, int notification, Date nDate) {
+        this.studentID = studentID;
+        this.notification = notification;
+        this.nDate = nDate;
+    }
+
+	public String getStudentID() {
+		return studentID;
 	}
 
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
 	}
 
 	public int getNotification() {
@@ -41,11 +47,11 @@ public class Notification implements Serializable {
 		this.notification = notification;
 	}
 
-	public LocalDate getnDate() {
+	public Date getNDate() {
 		return nDate;
 	}
 
-	public void setnDate(LocalDate nDate) {
+	public void setNDate(Date nDate) {
 		this.nDate = nDate;
 	}
 

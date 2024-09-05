@@ -14,7 +14,7 @@ public class AttendanceNameDAO extends DAO {
     // 全件検索
     public List<AttendanceName> all() throws Exception {
         List<AttendanceName> attendanceNameList = new ArrayList<>();
-        String sql = "SELECT * FROM public.attendancename";
+        String sql = "SELECT * FROM attendancename";
 
         try (Connection conn = getConnection();
                 Statement stmt = conn.createStatement();
@@ -33,7 +33,7 @@ public class AttendanceNameDAO extends DAO {
 
     // データ登録
     public void insert(AttendanceName attendanceName) throws Exception {
-        String sql = "INSERT INTO public.attendancename (attendance, attendancename) VALUES (?, ?)";
+        String sql = "INSERT INTO attendancename (attendance, attendancename) VALUES (?, ?)";
 
         try (Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -45,7 +45,7 @@ public class AttendanceNameDAO extends DAO {
 
     // データ更新
     public void update(AttendanceName attendanceName) throws Exception {
-        String sql = "UPDATE public.attendancename SET attendancename = ? WHERE attendance = ?";
+        String sql = "UPDATE attendancename SET attendancename = ? WHERE attendance = ?";
 
         try (Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -57,7 +57,7 @@ public class AttendanceNameDAO extends DAO {
 
     // データ削除
     public void delete(String attendance) throws Exception {
-        String sql = "DELETE FROM public.attendancename WHERE attendance = ?";
+        String sql = "DELETE FROM attendancename WHERE attendance = ?";
 
         try (Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {

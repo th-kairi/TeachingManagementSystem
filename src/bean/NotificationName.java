@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * NOTIFICATIONNAMEのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -18,6 +18,11 @@ public class NotificationName implements Serializable {
 	 * 種別名
 	 */
 	private String notificationName;
+
+    public NotificationName(int notification, String notificationName) {
+        this.notification = notification;
+        this.notificationName = notificationName;
+    }
 
 	public int getNotification() {
 		return notification;

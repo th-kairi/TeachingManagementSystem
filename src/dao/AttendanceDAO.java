@@ -22,7 +22,7 @@ public class AttendanceDAO extends DAO {
 	// 全件検索
 	public List<Attendance> all() throws Exception {
 		List<Attendance> attendanceList = new ArrayList<>();
-		String sql = "SELECT * FROM public.attendance";
+		String sql = "SELECT * FROM attendance";
 
 		// リソースの解放:
 		// try-with-resources構文を使用して、StatementやPreparedStatement、ResultSetなどのリソースを自動的に閉じる
@@ -42,7 +42,7 @@ public class AttendanceDAO extends DAO {
 
 	// データ登録
 	public void insert(Attendance attendance) throws Exception {
-		String sql = "INSERT INTO public.attendance (studentid, attendance, atreason, atdate, point) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO attendance (studentid, attendance, atreason, atdate, point) VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -57,7 +57,7 @@ public class AttendanceDAO extends DAO {
 
 	// データ更新
 	public void update(Attendance attendance) throws Exception {
-		String sql = "UPDATE public.attendance SET attendance = ?, atreason = ?, point = ? WHERE studentid = ? AND atdate = ?";
+		String sql = "UPDATE attendance SET attendance = ?, atreason = ?, point = ? WHERE studentid = ? AND atdate = ?";
 
 		try (Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -72,7 +72,7 @@ public class AttendanceDAO extends DAO {
 
 	// データ削除
 	public void delete(String studentId, Date atDate) throws Exception {
-		String sql = "DELETE FROM public.attendance WHERE studentid = ? AND atdate = ?";
+		String sql = "DELETE FROM attendance WHERE studentid = ? AND atdate = ?";
 
 		try (Connection conn = getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -13,7 +13,7 @@ public class ClassListDAO extends DAO {
     // 全件検索
     public List<ClassList> all() throws Exception {
         List<ClassList> classListList = new ArrayList<>();
-        String sql = "SELECT * FROM public.classlist";
+        String sql = "SELECT * FROM classlist";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -32,7 +32,7 @@ public class ClassListDAO extends DAO {
 
     // データ登録
     public void insert(ClassList classList) throws Exception {
-        String sql = "INSERT INTO public.classlist (classcd, name) VALUES (?, ?)";
+        String sql = "INSERT INTO classlist (classcd, name) VALUES (?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -44,7 +44,7 @@ public class ClassListDAO extends DAO {
 
     // データ更新
     public void update(ClassList classList) throws Exception {
-        String sql = "UPDATE public.classlist SET name = ? WHERE classcd = ?";
+        String sql = "UPDATE classlist SET name = ? WHERE classcd = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -56,7 +56,7 @@ public class ClassListDAO extends DAO {
 
     // データ削除
     public void delete(String classCD) throws Exception {
-        String sql = "DELETE FROM public.classlist WHERE classcd = ?";
+        String sql = "DELETE FROM classlist WHERE classcd = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

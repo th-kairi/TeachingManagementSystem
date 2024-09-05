@@ -14,7 +14,7 @@ public class ClassRosterDAO extends DAO {
     // 全件検索
     public List<ClassRoster> all() throws Exception {
         List<ClassRoster> classRosterList = new ArrayList<>();
-        String sql = "SELECT * FROM public.classroster";
+        String sql = "SELECT * FROM classroster";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -35,7 +35,7 @@ public class ClassRosterDAO extends DAO {
 
     // データ登録
     public void insert(ClassRoster classRoster) throws Exception {
-        String sql = "INSERT INTO public.classroster (classcd, name, studentid) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO classroster (classcd, name, studentid) VALUES (?, ?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -55,7 +55,7 @@ public class ClassRosterDAO extends DAO {
 
     // データ更新
     public void update(ClassRoster classRoster) throws Exception {
-        String sql = "UPDATE public.classroster SET classcd = ?, name = ?, studentid = ? WHERE id = ?";
+        String sql = "UPDATE classroster SET classcd = ?, name = ?, studentid = ? WHERE id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -69,7 +69,7 @@ public class ClassRosterDAO extends DAO {
 
     // データ削除
     public void delete(int id) throws Exception {
-        String sql = "DELETE FROM public.classroster WHERE id = ?";
+        String sql = "DELETE FROM classroster WHERE id = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * SCOREのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -37,7 +37,16 @@ public class Score implements Serializable {
 	/**
 	 * 回数
 	 */
-	private int times;
+	private int count;
+
+    public Score(String studentID, String subjectCD, String year, String month, int score, int count) {
+        this.studentID = studentID;
+        this.subjectCD = subjectCD;
+        this.year = year;
+        this.month = month;
+        this.score = score;
+        this.count = count;
+    }
 
 	public String getStudentID() {
 		return studentID;
@@ -79,11 +88,11 @@ public class Score implements Serializable {
 		this.score = score;
 	}
 
-	public int getTimes() {
-		return times;
+	public int getCount() {
+		return count;
 	}
 
-	public void setTimes(int times) {
-		this.times = times;
+	public void setCount(int count) {
+		this.count = count;
 	}
 }
