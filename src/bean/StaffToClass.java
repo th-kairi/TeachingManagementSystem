@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * STAFFTOCLASSのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -18,6 +18,11 @@ public class StaffToClass implements Serializable {
 	 * クラスコード
 	 */
 	private String classCD;
+
+    public StaffToClass(String staffID, String classCD) {
+        this.staffID = staffID;
+        this.classCD = classCD;
+    }
 
 	public String getStaffID() {
 		return staffID;

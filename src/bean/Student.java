@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * STUDENTのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -37,7 +37,17 @@ public class Student implements Serializable {
 	/**
 	 * 退学フラグ
 	 */
-	private String dropFlag;
+	private boolean dropFlag;
+
+
+    public Student(String studentID, String name, String sex, String studentTEL, String parentTEL, boolean dropFlag) {
+        this.studentID = studentID;
+        this.name = name;
+        this.sex = sex;
+        this.studentTEL = studentTEL;
+        this.parentTEL = parentTEL;
+        this.dropFlag = dropFlag;
+    }
 
 	public String getStudentID() {
 		return studentID;
@@ -79,11 +89,11 @@ public class Student implements Serializable {
 		this.parentTEL = parentTEL;
 	}
 
-	public String getDropFlag() {
+	public boolean getDropFlag() {
 		return dropFlag;
 	}
 
-	public void setDropFlag(String dropFlag) {
+	public void setDropFlag(boolean dropFlag) {
 		this.dropFlag = dropFlag;
 	}
 

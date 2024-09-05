@@ -1,7 +1,7 @@
 package bean;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * SUBJECTのbean
@@ -22,12 +22,19 @@ public class Subject implements Serializable {
 	/**
 	 * 単位
 	 */
-	private String credit;
+	private int credit;
 
 	/**
 	 * 締め日（成績）
 	 */
-	private LocalDate closingDate;
+	private Date closingDate;
+
+    public Subject(String subjectCd, String subjectName, int credit, Date closingDate) {
+        this.subjectCD = subjectCd;
+        this.subjectName = subjectName;
+        this.credit = credit;
+        this.closingDate = closingDate;
+    }
 
 	public String getSubjectCD() {
 		return subjectCD;
@@ -45,19 +52,19 @@ public class Subject implements Serializable {
 		this.subjectName = subjectName;
 	}
 
-	public String getCredit() {
+	public int getCredit() {
 		return credit;
 	}
 
-	public void setCredit(String credit) {
+	public void setCredit(int credit) {
 		this.credit = credit;
 	}
 
-	public LocalDate getClosingDate() {
+	public Date getClosingDate() {
 		return closingDate;
 	}
 
-	public void setClosingDate(LocalDate closingDate) {
+	public void setClosingDate(Date closingDate) {
 		this.closingDate = closingDate;
 	}
 
