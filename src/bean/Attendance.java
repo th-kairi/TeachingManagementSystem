@@ -1,11 +1,11 @@
 package bean;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  * ATTENDANCEのbean
- * 
+ *
  * @author 東京情報校　辻本秀樹
  * @version 1.0
  */
@@ -28,7 +28,7 @@ public class Attendance implements Serializable {
 	/**
 	 * 日付
 	 */
-	private LocalDate atDate;
+	private Date atDate;
 
 	/**
 	 * 出席確定フラグ
@@ -59,11 +59,11 @@ public class Attendance implements Serializable {
 		this.atReason = atReason;
 	}
 
-	public LocalDate getAtDate() {
+	public Date getAtDate() {
 		return atDate;
 	}
 
-	public void setAtDate(LocalDate atDate) {
+	public void setAtDate(Date atDate) {
 		this.atDate = atDate;
 	}
 
