@@ -7,7 +7,7 @@
 		<li><a href="">出席入力</a></li>
 		<li><a href="">出席状況確認</a></li>
 		<li><a href="">発送書類作成</a></li>
-		<li><a href="">カレンダー取り込み</a></li>
+		<li><a href="/TeachingManagementSystem/AttendanceManagement/calendarCapture">カレンダー取り込み</a></li>
 	</ul>
 
 	<h5>成績管理</h5>
