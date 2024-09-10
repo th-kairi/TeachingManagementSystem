@@ -49,12 +49,12 @@
 				<td></td>
 				<td></td>
 				<td></td>
+				<td>欠</td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>遅</td>
+				<td>早</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -83,9 +83,9 @@
 				<td>大原太郎2</td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>忌</td>
+				<td>忌</td>
+				<td>忌</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -133,10 +133,10 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>他</td>
+				<td>他</td>
+				<td>他</td>
+				<td>他</td>
 				<td></td>
 				<td></td>
 				<td></td>
