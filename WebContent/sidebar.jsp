@@ -5,7 +5,7 @@
 	<h5>出家席管理</h5>
     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ms-3">
 		<li><a href="">出席入力</a></li>
-		<li><a href="">出席状況確認</a></li>
+		<li><a href="/TeachingManagementSystem/AttendanceManagement/ConfirmationOfAttendance">出席状況確認</a></li>
 		<li><a href="">発送書類作成</a></li>
 		<li><a href="/TeachingManagementSystem/AttendanceManagement/calendarCapture">カレンダー取り込み</a></li>
 	</ul>

@@ -21,12 +21,15 @@ public class CalendarCaptureController extends CommonServlet {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		System.out.print("CalendarCaptureController");
 		// TODO 自動生成されたメソッド・スタブ
-		req.getRequestDispatcher("/AttendanceManagement/calendarCapture.jsp").forward(req, resp);
+		req.getRequestDispatcher("/AttendanceManagement/CalendarCapture.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
+		System.out.println("CalendarCaptureController.post()が実行されました");
+
+		req.getRequestDispatcher("/AttendanceManagement/CalendarCapture.jsp").forward(req, resp);
 
 	}
 
