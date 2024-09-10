@@ -2,8 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<h1>高さが決まっているエリア内で、左2列を固定して横スクロール</h1>
-
 <div class="scrolltable">
 	<table>
 		<thead>

@@ -28,7 +28,7 @@
 			</aside>
 			<!-- Section-->
 			<section class="col-10 py-2">
-				<div class="container px-4 px-lg-5 mt-5" >${ param.body }</div>
+				<div class="container px-3 px-lg-4 mt-5" >${ param.body }</div>
 			</section>
 		</div>
 	</div>
