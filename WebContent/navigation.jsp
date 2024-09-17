@@ -10,7 +10,8 @@
 		<div class="col-5 collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
 				<c:choose>
-					<c:when test="ture">
+					<c:when test="${not empty staff}">
+						<li>${staff.name} <c:if test="${staff.KFlag == '1'}">(管理者)</c:if></li>
 						<li><a class="nav-link active" href="/TeachingManagementSystem/accounts/logout">ログアウト</a></li>
 					</c:when>
 					<c:otherwise>

@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,4 +71,75 @@ public class StaffDAO extends DAO {
             pstmt.executeUpdate();
         }
     }
+
+
+	public Staff getByID(String staffId) throws Exception {
+		Staff staff = null;
+
+		Connection connection;
+		try {
+			connection = getConnection();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
+
+		PreparedStatement statement = null;
+
+		try {
+			statement = connection.prepareStatement("select * from staff where staffid=?");
+
+			statement.setString(1, staffId);
+
+			ResultSet resultSet = statement.executeQuery();
+
+			if (resultSet.next()) {
+				// リザルトセットが存在する場合
+				// 教員インスタンスに検索結果をセット
+                staff = new Staff(
+                		resultSet.getString("staffID"),
+                		resultSet.getString("password"),
+                		resultSet.getString("name"),
+                		resultSet.getString("kflag")
+                    );
+			} else {
+				// リザルトセットが存在しない場合
+				// 教員インスタンスはnullのまま
+
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+		return staff;
+	}
+
+
+	public Staff getLoginUser(String staffID, String password) throws Exception {
+		Staff staff = getByID(staffID);
+		// 教員がnullまたはパスワードが一致しない場合
+		if (staff == null || !staff.getPassword().equals(password)) {
+			return null;
+		}
+		return staff;
+	}
 }
