@@ -1,16 +1,16 @@
 INSERT INTO STAFF (STAFFID, PASSWORD, NAME, KFLAG) VALUES
-('S001', 'pass1234', '“c’† ‘¾˜Y', 'Y'),
-('S002', 'pass5678', '—é–Ø ‰ÔŽq', 'N'),
-('S003', 'pass9012', '²“¡ ŽŸ˜Y', 'Y'),
-('S004', 'pass3456', 'ŽR“c ŽO˜Y', 'N'),
-('S005', 'pass7890', '‚‹´ Žl˜Y', 'Y');
+('S001', 'pass1234', 'ç”°ä¸­ å¤ªéƒŽ', 'Y'),
+('S002', 'pass5678', 'éˆ´æœ¨ èŠ±å­', 'N'),
+('S003', 'pass9012', 'ä½è—¤ æ¬¡éƒŽ', 'Y'),
+('S004', 'pass3456', 'å±±ç”° ä¸‰éƒŽ', 'N'),
+('S005', 'pass7890', 'é«˜æ©‹ å››éƒŽ', 'Y');
 
 INSERT INTO CLASSLIST (CLASSCD, NAME) VALUES
-('131', 'ƒVƒXƒeƒ€ŠJ”­ƒR[ƒX'),
-('132', 'AIƒVƒXƒeƒ€ŠJ”­ƒR[ƒX'),
-('231', 'ƒVƒXƒeƒ€ŠJ”­ƒR[ƒX'),
-('232', 'AIƒVƒXƒeƒ€ŠJ”­ƒR[ƒX'),
-('331', 'ƒVƒXƒeƒ€ŠJ”­ƒR[ƒX');
+('131', 'ã‚·ã‚¹ãƒ†ãƒ é–‹ç™ºã‚³ãƒ¼ã‚¹'),
+('132', 'AIã‚·ã‚¹ãƒ†ãƒ é–‹ç™ºã‚³ãƒ¼ã‚¹'),
+('231', 'ã‚·ã‚¹ãƒ†ãƒ é–‹ç™ºã‚³ãƒ¼ã‚¹'),
+('232', 'AIã‚·ã‚¹ãƒ†ãƒ é–‹ç™ºã‚³ãƒ¼ã‚¹'),
+('331', 'ã‚·ã‚¹ãƒ†ãƒ é–‹ç™ºã‚³ãƒ¼ã‚¹');
 
 INSERT INTO STAFFTOCLASS (STAFFID, CLASSCD) VALUES
 ('S001', '131'),
