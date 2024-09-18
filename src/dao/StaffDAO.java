@@ -79,12 +79,12 @@ public class StaffDAO extends DAO {
 		Connection connection;
 		try {
 			connection = getConnection();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;
 		}
-		
+
 
 		PreparedStatement statement = null;
 
