@@ -36,6 +36,16 @@ public class LoginController extends CommonServlet {
 
 
 		// 入力チェック
+		if (login.isEmpty() || password.isEmpty()) {
+			// メッセージの設定
+			req.setAttribute("errorMessage", "ユーザIDとパスワードを入力してください");
+
+			// リクエスト属性の設定
+			req.setAttribute("login", login);
+
+			// 画面遷移
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
+		}
 		
 		// ログイン処理
 		StaffDAO staffDAO = new StaffDAO();
@@ -45,7 +55,15 @@ public class LoginController extends CommonServlet {
 		
 		if (staff == null) {
 			// ログイン失敗
-			req.getRequestDispatcher("login.jsp").forward(req, resp);			
+			
+			// メッセージの設定
+			req.setAttribute("errorMessage", "ユーザIDまたはパスワードが違います");
+			
+			// リクエスト属性の設定
+			req.setAttribute("login", login);
+
+			// 画面遷移
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		} else {
 			// ログイン成功
 			// セッション情報を取得
@@ -53,7 +71,8 @@ public class LoginController extends CommonServlet {
 
 			// セッションにログイン情報(staff)を保存
 			session.setAttribute("staff", staff);
-			
+
+			// 画面遷移
 			req.getRequestDispatcher("../index.jsp").forward(req, resp);
 		}
 
