@@ -19,7 +19,7 @@
                 <tr>
                     <td>${staff.staffID}</td>
                     <td>${staff.name}</td>
-                    <td>${staff.kflag}</td>
+                    <td>${staff.KFlag}</td>
                 </tr>
             </c:forEach>
         </c:if>

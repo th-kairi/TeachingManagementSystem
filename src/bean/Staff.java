@@ -14,13 +14,6 @@ public class Staff implements Serializable {
 	private String name;
 	private String kFlag;
 
-    public Staff(String staffID, String password, String name, String kFlag) {
-        this.staffID = staffID;
-        this.password = password;
-        this.name = name;
-        this.kFlag = kFlag;
-    }
-
 	public String getStaffID() {
 		return staffID;
 	}

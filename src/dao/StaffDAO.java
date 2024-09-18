@@ -21,12 +21,12 @@ public class StaffDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Staff staff = new Staff(
-                    rs.getString("staffID"),
-                    rs.getString("password"),
-                    rs.getString("name"),
-                    rs.getString("kflag")
-                );
+                Staff staff = new Staff();
+                staff.setStaffID(rs.getString("staffID"));
+                staff.setPassword(rs.getString("password"));
+                staff.setName(rs.getString("name"));
+                staff.setKFlag(rs.getString("kflag"));
+
                 staffList.add(staff);
             }
         }
@@ -93,17 +93,17 @@ public class StaffDAO extends DAO {
 
 			statement.setString(1, staffId);
 
-			ResultSet resultSet = statement.executeQuery();
+			ResultSet rs = statement.executeQuery();
 
-			if (resultSet.next()) {
+			if (rs.next()) {
 				// リザルトセットが存在する場合
 				// 教員インスタンスに検索結果をセット
-                staff = new Staff(
-                		resultSet.getString("staffID"),
-                		resultSet.getString("password"),
-                		resultSet.getString("name"),
-                		resultSet.getString("kflag")
-                    );
+                staff = new Staff();
+                staff.setStaffID(rs.getString("staffID"));
+                staff.setPassword(rs.getString("password"));
+                staff.setName(rs.getString("name"));
+                staff.setKFlag(rs.getString("kflag"));
+
 			} else {
 				// リザルトセットが存在しない場合
 				// 教員インスタンスはnullのまま
