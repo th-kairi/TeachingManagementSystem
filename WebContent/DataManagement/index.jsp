@@ -6,10 +6,10 @@
 
 <c:param name="body">
 
-<h2 class="navbar-brand"><a class="nav-link active" href="/TeachingManagementSystem/checkData/">データチェック用のページです</a></h2>
+<h2 class="navbar-brand"><a class="nav-link active" href="/TeachingManagementSystem/dataManagement">データチェック用のページです</a></h2>
 
 <ul>
-	<li><a class="nav-link active" href="/TeachingManagementSystem/checkData/StaffDataCheck/">Staff</a></li>
+	<li><a class="nav-link active" href="/TeachingManagementSystem/dataManagement/StaffDataCheck">Staff</a></li>
 
 </ul>
 
