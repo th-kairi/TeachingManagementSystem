@@ -12,7 +12,7 @@ public class ClassListDAO extends DAO {
 
     // 全件検索
     public List<ClassList> all() throws Exception {
-        List<ClassList> classListList = new ArrayList<>();
+        List<ClassList> list = new ArrayList<>();
         String sql = "SELECT * FROM classlist";
 
         try (Connection conn = getConnection();
@@ -20,14 +20,13 @@ public class ClassListDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                ClassList classList = new ClassList(
-                    rs.getString("classcd"),
-                    rs.getString("name")
-                );
-                classListList.add(classList);
+                ClassList classList = new ClassList();
+                classList.setClassCD(rs.getString("classcd"));
+                classList.setName(rs.getString("name"));
+                list.add(classList);
             }
         }
-        return classListList;
+        return list;
     }
 
     // データ登録

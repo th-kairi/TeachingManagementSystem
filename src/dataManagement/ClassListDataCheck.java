@@ -1,0 +1,34 @@
+package dataManagement;
+
+import java.util.List;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bean.ClassList;
+import dao.ClassListDAO;
+import tool.CommonServlet;
+
+@WebServlet(urlPatterns={"/dataManagement/ClassListDataCheck"})
+public class ClassListDataCheck extends CommonServlet {
+
+	@Override
+	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		// TODO 自動生成されたメソッド・スタブ
+
+		ClassListDAO dao = new ClassListDAO();
+
+		List<ClassList> staffList = dao.all();
+        req.setAttribute("staffList", staffList);
+        req.getRequestDispatcher("/DataManagement/classList.jsp").forward(req, resp);
+
+	}
+
+	@Override
+	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+}

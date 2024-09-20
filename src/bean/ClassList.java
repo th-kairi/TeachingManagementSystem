@@ -19,11 +19,6 @@ public class ClassList implements Serializable {
 	 */
 	private String name;
 
-    public ClassList(String classCD, String name) {
-        this.classCD = classCD;
-        this.name = name;
-    }
-
 	public String getClassCD() {
 		return classCD;
 	}

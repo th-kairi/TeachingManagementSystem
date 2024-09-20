@@ -10,22 +10,21 @@
 
     <table border="1">
         <tr>
-            <th>スタッフID</th>
+            <th>クラスID</th>
             <th>名前</th>
-            <th>権限フラグ</th>
         </tr>
-        <c:if test="${not empty staffList}">
-            <c:forEach var="staff" items="${staffList}">
+        <c:if test="${not empty list}">
+            <c:forEach var="list" items="${list}">
                 <tr>
-                    <td>${staff.staffID}</td>
-                    <td>${staff.name}</td>
-                    <td>${staff.KFlag}</td>
+                    <td>${list.classCD}</td>
+                    <td>${list.name}</td>
                 </tr>
             </c:forEach>
+            <p>${list}</p>
         </c:if>
         <c:if test="${empty staffList}">
             <tr>
-                <td colspan="3">スタッフがいません。</td>
+                <td colspan="3">クラスリストがありません</td>
             </tr>
         </c:if>
     </table>
