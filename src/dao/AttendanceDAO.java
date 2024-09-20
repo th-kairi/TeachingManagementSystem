@@ -31,8 +31,12 @@ public class AttendanceDAO extends DAO {
 				ResultSet rs = stmt.executeQuery(sql)) {
 
 			while (rs.next()) {
-				Attendance attendance = new Attendance(rs.getString("studentid"), rs.getString("attendance"),
-						rs.getString("atreason"), rs.getDate("atdate"), rs.getBoolean("point"));
+				Attendance attendance = new Attendance();
+				attendance.setStudentID(rs.getString("studentid"));
+				attendance.setAttendance(rs.getString("attendance"));
+				attendance.setAtReason(rs.getString("atreason"));
+				attendance.setAtDate(rs.getDate("atdate"));
+				attendance.setPoint(rs.getBoolean("point"));
 				attendanceList.add(attendance);
 			}
 		}
@@ -44,8 +48,7 @@ public class AttendanceDAO extends DAO {
 	public void insert(Attendance attendance) throws Exception {
 		String sql = "INSERT INTO attendance (studentid, attendance, atreason, atdate, point) VALUES (?, ?, ?, ?, ?)";
 
-		try (Connection conn = getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, attendance.getStudentID());
 			pstmt.setString(2, attendance.getAttendance());
 			pstmt.setString(3, attendance.getAtReason());
@@ -59,8 +62,7 @@ public class AttendanceDAO extends DAO {
 	public void update(Attendance attendance) throws Exception {
 		String sql = "UPDATE attendance SET attendance = ?, atreason = ?, point = ? WHERE studentid = ? AND atdate = ?";
 
-		try (Connection conn = getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, attendance.getAttendance());
 			pstmt.setString(2, attendance.getAtReason());
 			pstmt.setBoolean(3, attendance.isPoint());
@@ -74,8 +76,7 @@ public class AttendanceDAO extends DAO {
 	public void delete(String studentId, Date atDate) throws Exception {
 		String sql = "DELETE FROM attendance WHERE studentid = ? AND atdate = ?";
 
-		try (Connection conn = getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, studentId);
 			pstmt.setDate(2, new java.sql.Date(atDate.getTime()));
 			pstmt.executeUpdate();

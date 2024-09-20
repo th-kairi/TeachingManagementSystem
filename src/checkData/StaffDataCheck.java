@@ -10,8 +10,8 @@ import bean.Staff;
 import dao.StaffDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/checkData/staffDataCheck"})
-public class staffDataCheck extends CommonServlet {
+@WebServlet(urlPatterns={"/checkData/StaffDataCheck/"})
+public class StaffDataCheck extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -21,7 +21,7 @@ public class staffDataCheck extends CommonServlet {
 
 		List<Staff> staffList = dao.all();
         req.setAttribute("staffList", staffList);
-        req.getRequestDispatcher("staff.jsp").forward(req, resp);
+        req.getRequestDispatcher("/checkData/staff.jsp").forward(req, resp);
 
 	}
 
