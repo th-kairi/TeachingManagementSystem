@@ -18,7 +18,6 @@ public class ClassListDAO extends DAO {
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-
             while (rs.next()) {
                 ClassList classList = new ClassList();
                 classList.setClassCD(rs.getString("classcd"));

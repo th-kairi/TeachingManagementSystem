@@ -19,8 +19,8 @@ public class ClassListDataCheck extends CommonServlet {
 
 		ClassListDAO dao = new ClassListDAO();
 
-		List<ClassList> staffList = dao.all();
-        req.setAttribute("staffList", staffList);
+		List<ClassList> classList = dao.all();
+        req.setAttribute("list", classList);
         req.getRequestDispatcher("/DataManagement/classList.jsp").forward(req, resp);
 
 	}

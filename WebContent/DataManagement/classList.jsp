@@ -10,25 +10,23 @@
 
     <table border="1">
         <tr>
-            <th>クラスID</th>
+            <th>スタッフID</th>
             <th>名前</th>
         </tr>
         <c:if test="${not empty list}">
-            <c:forEach var="list" items="${list}">
+            <c:forEach var="classList" items="${list}">
                 <tr>
-                    <td>${list.classCD}</td>
-                    <td>${list.name}</td>
+                    <td>${classList.classCD}</td>
+                    <td>${classList.name}</td>
                 </tr>
             </c:forEach>
-            <p>${list}</p>
         </c:if>
-        <c:if test="${empty staffList}">
+        <c:if test="${empty list}">
             <tr>
-                <td colspan="3">クラスリストがありません</td>
+                <td colspan="3">スタッフがいません。</td>
             </tr>
         </c:if>
     </table>
 
 </c:param>
-
 </c:import>
