@@ -19,7 +19,6 @@ public class CalendarCaptureController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		System.out.print("CalendarCaptureController");
 		// TODO 自動生成されたメソッド・スタブ
 		req.getRequestDispatcher("/AttendanceManagement/CalendarCapture.jsp").forward(req, resp);
 	}

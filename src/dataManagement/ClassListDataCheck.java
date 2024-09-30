@@ -30,5 +30,4 @@ public class ClassListDataCheck extends CommonServlet {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
-
 }

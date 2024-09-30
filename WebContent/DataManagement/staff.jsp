@@ -12,6 +12,7 @@
         <tr>
             <th>スタッフID</th>
             <th>名前</th>
+            <th>パス</th>
             <th>権限フラグ</th>
         </tr>
         <c:if test="${not empty staffList}">
@@ -19,6 +20,7 @@
                 <tr>
                     <td>${staff.staffID}</td>
                     <td>${staff.name}</td>
+                    <td>${staff.password}</td>
                     <td>${staff.KFlag}</td>
                 </tr>
             </c:forEach>
