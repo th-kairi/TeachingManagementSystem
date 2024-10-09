@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import tool.CommonServlet;
 import tool.DateInformationAcquisition;
 
+/**
+ * @author admin
+ *
+ */
 @WebServlet(urlPatterns = { "/AttendanceManagement/ConfirmationOfAttendance" })
 public class ConfirmationOfAttendance extends CommonServlet {
 
@@ -22,6 +26,7 @@ public class ConfirmationOfAttendance extends CommonServlet {
 		String baseDate;
 		// 引数を受け取る
 		String strInputBaseDate = req.getParameter("baseDate");
+		String strClassCode = req.getParameter("classCode");
 
 		if (strInputBaseDate == null || strInputBaseDate.equals("")) {
 			// LocalDateTimeのフォーマットを"yyyy-MM-dd"に修正する
@@ -33,6 +38,7 @@ public class ConfirmationOfAttendance extends CommonServlet {
 		int lastDate = dataInfo.getLastDate(baseDate);
 
 		req.setAttribute("baseDate", baseDate);
+		req.setAttribute("classCode", strClassCode);
 
 		req.getRequestDispatcher("/AttendanceManagement/ConfirmationOfAttendance.jsp").forward(req, resp);
 

@@ -29,7 +29,6 @@ public class DateInformationAcquisition {
 	 * @return 月末日付
 	 */
 	public int getLastDate(String strDate) {
-        System.out.println("===========================================================================");
 
 	    int yyyy = Integer.parseInt(strDate.substring(0,4));
 	    int MM = Integer.parseInt(strDate.substring(5,7));
@@ -37,10 +36,6 @@ public class DateInformationAcquisition {
 	    Calendar cal = Calendar.getInstance();
 	    cal.set(yyyy,MM-1,dd);
 	    int lastDate = cal.getActualMaximum(Calendar.DATE);
-
-	    System.out.println(strDate + "を引数で受け取りました");
-	    System.out.println("受け取った日付を基準日に割り出した最終日は" + lastDate + "日です");
-        System.out.println("===========================================================================");
 	    return lastDate;
 	}
 
