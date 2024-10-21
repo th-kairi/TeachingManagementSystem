@@ -527,3 +527,13 @@ INSERT INTO SUBJECT (SUBJECTCD, SUBJECTNAME, CREDIT, CLOSINGDATE) VALUES
 ('AI3', '深層学習', 15, '2026-03-31'),
 ('AI4', '自然言語処理', 10, '2026-06-30'),
 ('DS3', 'クラウドコンピューティング', 15, '2026-09-30');
+
+INSERT INTO ATTENDANCENAME (ATTENDANCE, ATTENDANCENAME) VALUES
+('1', '欠席'),
+('2', '遅刻'),
+('3', '早退'),
+('4', 'その他欠席'),
+('5', '休学'),
+('8', '退学'),
+('9', '休日'),
+('23', '遅刻+早退');
