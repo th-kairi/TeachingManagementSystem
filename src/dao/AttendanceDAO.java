@@ -31,17 +31,16 @@ public class AttendanceDAO extends DAO {
 				ResultSet rs = stmt.executeQuery(sql)) {
 
 			while (rs.next()) {
-				Attendance attendance = new Attendance();
-				attendance.setStudentID(rs.getString("studentid"));
-				attendance.setAttendance(rs.getString("attendance"));
-				attendance.setAtReason(rs.getString("atreason"));
-				attendance.setAtDate(rs.getDate("atdate"));
-				attendance.setPoint(rs.getBoolean("point"));
+				Attendance attendance = new Attendance(
+						rs.getString("studentid"),
+						rs.getString("attendance"),
+						rs.getString("atreason"),
+						rs.getDate("atdate"),
+						rs.getBoolean("point"));
 				attendanceList.add(attendance);
 			}
+			return attendanceList;
 		}
-
-		return attendanceList;
 	}
 
 	// データ登録
