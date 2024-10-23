@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 //フィルターを適用するURLの範囲を指定
 // * は任意の文字列　＝＞　すべてのURLに対して適用
@@ -29,6 +30,14 @@ public class EncodingFilter implements Filter {
 		response.setContentType("text/html; charset=UTF-8");
 		// System.out.println("エンコーディングフィルターの前処理");
 
+		// デバッグ用：パラメータの表示
+		System.out.println("--URL--");
+		System.out.println(((HttpServletRequest) request).getRequestURI());
+		System.out.println("▼パラメータ▼");
+		for (String key : request.getParameterMap().keySet()) {
+			System.out.println(key + " : " + request.getParameter(key));
+		}
+		System.out.println("▲パラメータ▲");
 		// 次のフィルター、またはサーブレットの処理を呼び出す
 		chain.doFilter(request, response);
 
