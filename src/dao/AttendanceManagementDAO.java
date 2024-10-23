@@ -51,17 +51,12 @@ public class AttendanceManagementDAO extends DAO {
 	public List<Attendance> getAttendancesByClassCd(String classCd, int year, int month) throws Exception {
 		List<Attendance> attendanceList = new ArrayList<>();
 
-		// yとmを元にLocalDateを作成
-		String y = "2024";
-		String m = "10";
-
 		// 月の最初の日を取得
 		LocalDate firstDay = LocalDate.of(year, month, 1);
 		LocalDate lastDay = firstDay.withDayOfMonth(firstDay.lengthOfMonth());
 
 		Date sqlFirstDate = Date.valueOf(firstDay);
 		Date sqlLastDate = Date.valueOf(lastDay);
-		System.out.println(sqlFirstDate);
 
 		String sql = "SELECT"
 				+ "    tbl1.studentid, tbl1.date, attendance.attendance, attendance.atreason, attendance.point "
