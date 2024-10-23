@@ -23,7 +23,7 @@
         </c:if>
         <c:if test="${empty list}">
             <tr>
-                <td colspan="3">スタッフがいません。</td>
+                <td colspan="3">クラスがありません</td>
             </tr>
         </c:if>
     </table>
