@@ -14,9 +14,17 @@
 		        <c:if test="${not empty list}">
 		        <%-- classListに入っているクラスをプルダウンリストに展開 --%>
 		            <c:forEach var="classList" items="${list}">
-						<option value="${classList.classCD}">${classList.classCD}</option>
-
+		            	<c:choose>
+		            		<%-- 選択済みクラスを設定 --%>
+							<c:when test = "${classList.classCD == classCode }">
+								<option selected value="${classList.classCD}">${classList.classCD}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${classList.classCD}">${classList.classCD}</option>
+							</c:otherwise>
+						</c:choose>
 		            </c:forEach>
+
 		        </c:if>
 		        <c:if test="${empty list}">
 						<option value="">クラスがありません</option>
