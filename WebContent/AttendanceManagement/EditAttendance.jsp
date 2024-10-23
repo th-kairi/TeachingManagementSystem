@@ -7,10 +7,10 @@
 <c:param name="title">経理本科教務システム</c:param>
 
 <c:param name="body">
+	<p>${ errorMessage }</p>
 	<form action="./show" method="post">
-		<input type="hidden" id="year" name="year" value=2024 />
-		<input type="text" id="month" name="month" required maxlength="2" size="10" value="${month}" />
-		<label for="month">月</label>
+		<label for="yearmonth">年月</label>
+		<input type="month" id="yearmonth" name="yearmonth" required value="${yearmonth}" />
 		<input type="text" id="classCd" name="classCd" required maxlength="3" size="10" value="${classCd}" />
 		<label for="classCd">組</label>
 		<button class="btn btn-primary" type="submit">検索</button>

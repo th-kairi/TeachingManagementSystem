@@ -1,5 +1,6 @@
 package attendanceManagement;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,40 +42,36 @@ public class AttendanceManagementController extends CommonServlet {
 	 */
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		String stringYear = req.getParameter("year");
-		String stringMonth = req.getParameter("month");
+		String stringYearMonth = req.getParameter("yearmonth");
 		String classCd = req.getParameter("classCd");
 
-		System.out.println(stringYear);
-		System.out.println(stringMonth);
-		System.out.println(classCd);
+		// 年月の値が不正な場合は今日の年月にしておく
+		LocalDate localdate = LocalDate.now();
+		int year;
+		int month;
 
-		int year = 2024;
-		int month = 10;
-
-		if ( stringYear != null && !stringYear.isEmpty() ) {
-			year = Integer.parseInt(stringYear);
-		}
-		if ( stringMonth != null && !stringMonth.isEmpty() ) {
-			month = Integer.parseInt(stringMonth);
-		}
-		if ( classCd == null || classCd.isEmpty() ) {
-			classCd = "";
-		}
-
-		
 		// 入力チェック
-//		if (login.isEmpty() || password.isEmpty()) {
-//			// メッセージの設定
-//			req.setAttribute("errorMessage", "ユーザIDとパスワードを入力してください");
-//
-//			// リクエスト属性の設定
-//			req.setAttribute("login", login);
-//
-//			// 画面遷移
-//			req.getRequestDispatcher("login.jsp").forward(req, resp);
-//		}
+		if ( stringYearMonth != null && !stringYearMonth.isEmpty() ) {
+			// 入力あり
+			year = Integer.parseInt( stringYearMonth.split("-")[0] );
+			month = Integer.parseInt( stringYearMonth.split("-")[1] );
+		} else {
+			// 未入力
+			year = 	localdate.getYear();
+			month = localdate.getMonthValue();
+		}
+
+		if ( classCd == null || classCd.isEmpty() ) {
+			// 未入力
+			classCd = "";
+		} else {
+			// 入力あり
+		}
+
 		
+		System.out.println("year:"+year);
+		System.out.println("month:"+month);
+		System.out.println("classCd:"+classCd);
 		// データの取得
 		AttendanceManagementDAO attendanceManagementDAO = new AttendanceManagementDAO();
 		AttendanceNameDAO attendanceNameDAO = new AttendanceNameDAO();
@@ -84,33 +81,33 @@ public class AttendanceManagementController extends CommonServlet {
 		List<AttendanceName> attendanceNameList = null;
 
 		studentList = attendanceManagementDAO.getStudentsByClassCd(classCd);
-		attendanceList = attendanceManagementDAO.getAttendancesByClassCd(classCd, 2024, 10);
+		attendanceList = attendanceManagementDAO.getAttendancesByClassCd(classCd, year, month);
 		attendanceNameList = attendanceNameDAO.all();
 
 		// jspに渡すためにデータを加工
+		// 該当月の日付を1日から月末までリストで持つ
 		List<Date> uniqueDates = AttendanceManagementController.getUniqueDates(attendanceList);
+		// 学生情報を表示できるようMapで持つ
 		Map<String, Student> studentMap = AttendanceManagementController.getStudentMap(studentList);
+		// 出欠名を表示できるようMapで持つ
 		Map<String, AttendanceName> attendanceNameMap = AttendanceManagementController.getAttendanceNameMap(attendanceNameList);
 		
-		// セッション情報を取得
-		// HttpSession session = req.getSession(true);
-
-		
-		// リクエストに情報を保存
-		// req.setAttribute("studentList", studentList);
-
-		req.setAttribute("year", year);
-		req.setAttribute("month", month);
+		// jsp側に渡すデータ
+		// 年月
+		req.setAttribute("yearmonth", stringYearMonth);
+		// 組
 		req.setAttribute("classCd", classCd);
-
+		// 学生情報 … Mapで持つ
 		req.setAttribute("studentMap", studentMap);
+		// 出欠名 … Mapで持つ
 		req.setAttribute("attendanceNameMap", attendanceNameMap);
+		// 出欠情報
 		req.setAttribute("attendanceList", attendanceList);
+		// 該当月の日付リスト
 		req.setAttribute("uniqueDates", uniqueDates);
 
 		// 画面遷移
 		req.getRequestDispatcher("/AttendanceManagement/EditAttendance.jsp").forward(req, resp);
-
 	}
 
     public static List<Date> getUniqueDates(List<Attendance> attendanceList) {
