@@ -57,7 +57,6 @@ public class AttendanceManagementDAO extends DAO {
 
 		Date sqlFirstDate = Date.valueOf(firstDay);
 		Date sqlLastDate = Date.valueOf(lastDay);
-		System.out.println(sqlFirstDate);
 
 		String sql = "SELECT"
 				+ "    tbl1.studentid, tbl1.date, attendance.attendance, attendance.atreason, attendance.point "
