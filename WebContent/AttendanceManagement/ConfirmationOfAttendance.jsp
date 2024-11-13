@@ -36,7 +36,6 @@
 			<a class="btn btn-outline-dark" href="#" role="button">月</a>
 		</div>
 
-
 		<div class="scrolltable">
 			<table>
 				<c:import
