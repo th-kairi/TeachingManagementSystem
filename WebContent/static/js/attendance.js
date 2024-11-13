@@ -10,8 +10,11 @@ images.forEach((image) => {
     // クリックされた画像の情報を取得
     const clickedImage = event.target;
 	console.log("学籍番号:" + clickedImage.dataset.studentid);
+	console.log("学生氏名:" + clickedImage.dataset.studentname);
 	console.log("月:" + clickedImage.dataset.yearmonth);
 	console.log("日付:" + clickedImage.dataset.date);
+	console.log("出欠:" + clickedImage.dataset.attendance);
+	console.log("理由:" + clickedImage.dataset.atreason);
 	input_dialog.style.display = 'block';
   });
 });

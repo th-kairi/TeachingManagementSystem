@@ -44,7 +44,16 @@
 								<td>${attendance.studentID}</td><!-- 学籍番号  -->
 								<td>${studentMap[attendance.studentID].name}</td><!-- 氏名  -->
 						</c:if>
-						<td><img class="attendance_image" src="${pageContext.request.contextPath}/static/img/attendance${attendance.attendance}.png" data-studentid="${attendance.studentID}" data-yearmonth="${yearmonth}" data-date="${date}" /></td><!-- 出欠  -->
+						<td>
+							<img class="attendance_image" src="${pageContext.request.contextPath}/static/img/attendance${attendance.attendance}.png"
+								data-studentid="${attendance.studentID}" 
+								data-studentname="${studentMap[attendance.studentID].name}" 
+								data-yearmonth="${yearmonth}" 
+								data-date="${date}" 
+								data-attendance="${attendance.attendance}" 
+								data-atreason="${attendance.atReason}"
+							/>
+						</td><!-- 出欠  -->
 						<c:set var="lastStudentID" value="${attendance.studentID}" />
 						<c:set var="date" value="${date + 1}" />
 					</c:forEach>
