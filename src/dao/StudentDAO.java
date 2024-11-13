@@ -20,7 +20,8 @@ public class StudentDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Student student = new Student(
+                Student student = new Student();
+                student.setStudent(
                     rs.getString("studentID"),
                     rs.getString("name"),
                     rs.getString("sex"),

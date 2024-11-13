@@ -29,14 +29,15 @@ public class AttendanceManagementDAO extends DAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Student student = new Student(
-						rs.getString("studentid"),
-						rs.getString("name"),
-						rs.getString("sex"),
-						rs.getString("studenttel"),
-						rs.getString("parenttel"),
-						rs.getBoolean("dropflag")
-						);
+				Student student = new Student();
+				student.setStudent(
+					rs.getString("studentid"),
+					rs.getString("name"),
+					rs.getString("sex"),
+					rs.getString("studenttel"),
+					rs.getString("parenttel"),
+					rs.getBoolean("dropflag")
+				);
 				studentList.add(student);
 			}
 		}

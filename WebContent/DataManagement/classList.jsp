@@ -10,7 +10,6 @@
 table {
   table-layout: fixed;
   border: 1.1px solid #000;
-  border-collapse: separate; //デフォルト値なのでなくてもOK
   border-spacing: 0px;
   width: 400px;
   th,

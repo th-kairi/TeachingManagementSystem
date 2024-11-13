@@ -40,7 +40,7 @@ public class Student implements Serializable {
 	private boolean dropFlag;
 
 
-    public Student(String studentID, String name, String sex, String studentTEL, String parentTEL, boolean dropFlag) {
+    public void setStudent(String studentID, String name, String sex, String studentTEL, String parentTEL, boolean dropFlag) {
         this.studentID = studentID;
         this.name = name;
         this.sex = sex;
