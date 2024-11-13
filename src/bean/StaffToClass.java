@@ -19,7 +19,7 @@ public class StaffToClass implements Serializable {
 	 */
 	private String classCD;
 
-    public StaffToClass(String staffID, String classCD) {
+    public void setStaffToClass(String staffID, String classCD) {
         this.staffID = staffID;
         this.classCD = classCD;
     }

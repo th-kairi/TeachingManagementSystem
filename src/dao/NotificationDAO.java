@@ -20,7 +20,8 @@ public class NotificationDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Notification notification = new Notification(
+                Notification notification = new Notification();
+                notification.setNotification(
                     rs.getString("studentid"),
                     rs.getInt("notification"),
                     rs.getDate("ndate")

@@ -25,7 +25,7 @@ public class Notification implements Serializable {
 	 */
 	private Date nDate;
 
-    public Notification(String studentID, int notification, Date nDate) {
+    public void setNotification(String studentID, int notification, Date nDate) {
         this.studentID = studentID;
         this.notification = notification;
         this.nDate = nDate;

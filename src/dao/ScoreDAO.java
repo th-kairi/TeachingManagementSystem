@@ -20,7 +20,8 @@ public class ScoreDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Score score = new Score(
+                Score score = new Score();
+                score.setScore(
                     rs.getString("studentID"),
                     rs.getString("subjectCD"),
                     rs.getString("year"),

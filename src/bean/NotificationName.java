@@ -19,7 +19,7 @@ public class NotificationName implements Serializable {
 	 */
 	private String notificationName;
 
-    public NotificationName(int notification, String notificationName) {
+    public void setNotificationName(int notification, String notificationName) {
         this.notification = notification;
         this.notificationName = notificationName;
     }

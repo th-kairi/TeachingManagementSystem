@@ -29,7 +29,7 @@ public class Subject implements Serializable {
 	 */
 	private Date closingDate;
 
-    public Subject(String subjectCd, String subjectName, int credit, Date closingDate) {
+    public void setSubject(String subjectCd, String subjectName, int credit, Date closingDate) {
         this.subjectCD = subjectCd;
         this.subjectName = subjectName;
         this.credit = credit;

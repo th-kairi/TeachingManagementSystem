@@ -19,7 +19,7 @@ public class AttendanceName implements Serializable {
 	 */
 	private String attendanceName;
 
-	public AttendanceName(String attendance, String attendanceName) {
+	public void setAttendanceName(String attendance, String attendanceName) {
         this.attendance = attendance;
         this.attendanceName = attendanceName;
     }

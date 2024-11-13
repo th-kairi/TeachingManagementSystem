@@ -21,7 +21,8 @@ public class AttendanceNameDAO extends DAO {
                 ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                AttendanceName attendanceName = new AttendanceName(
+                AttendanceName attendanceName = new AttendanceName();
+                attendanceName.setAttendanceName(
                     rs.getString("attendance"),
                     rs.getString("attendancename")
                 );

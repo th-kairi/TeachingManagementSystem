@@ -39,7 +39,7 @@ public class Score implements Serializable {
 	 */
 	private int count;
 
-    public Score(String studentID, String subjectCD, String year, String month, int score, int count) {
+    public void setScore(String studentID, String subjectCD, String year, String month, int score, int count) {
         this.studentID = studentID;
         this.subjectCD = subjectCD;
         this.year = year;

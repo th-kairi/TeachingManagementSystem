@@ -21,7 +21,8 @@ public class ClassRosterDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                ClassRoster classRoster = new ClassRoster(
+                ClassRoster classRoster = new ClassRoster();
+                classRoster.setClassRoster(
                     rs.getInt("id"),
                     rs.getString("classcd"),
                     rs.getString("name"),

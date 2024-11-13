@@ -31,7 +31,8 @@ public class AttendanceDAO extends DAO {
 				ResultSet rs = stmt.executeQuery(sql)) {
 
 			while (rs.next()) {
-				Attendance attendance = new Attendance(
+				Attendance attendance = new Attendance();
+				attendance.setAttendance(
 						rs.getString("studentid"),
 						rs.getString("attendance"),
 						rs.getString("atreason"),

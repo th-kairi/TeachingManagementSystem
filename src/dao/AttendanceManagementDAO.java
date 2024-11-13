@@ -89,7 +89,8 @@ public class AttendanceManagementDAO extends DAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Attendance attendance = new Attendance(
+				Attendance attendance = new Attendance();
+				attendance.setAttendance(
 						rs.getString("studentid"),
 						rs.getString("attendance"),
 						rs.getString("atreason"),

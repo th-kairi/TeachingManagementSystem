@@ -20,7 +20,8 @@ public class SubjectDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Subject subject = new Subject(
+                Subject subject = new Subject();
+                subject.setSubject(
                     rs.getString("subjectcd"),
                     rs.getString("subjectname"),
                     rs.getInt("credit"),

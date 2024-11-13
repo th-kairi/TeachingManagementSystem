@@ -29,7 +29,7 @@ public class ClassRoster implements Serializable {
 	 */
 	private String studentID;
 
-    public ClassRoster(int id, String classCD, String name, String studentID) {
+    public void setClassRoster(int id, String classCD, String name, String studentID) {
         this.id = id;
         this.classCD = classCD;
         this.name = name;

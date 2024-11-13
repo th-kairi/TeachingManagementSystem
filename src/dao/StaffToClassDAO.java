@@ -21,7 +21,8 @@ public class StaffToClassDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                StaffToClass staffToClass = new StaffToClass(
+                StaffToClass staffToClass = new StaffToClass();
+                staffToClass.setStaffToClass(
                     rs.getString("staffID"),
                     rs.getString("classCD")
                 );

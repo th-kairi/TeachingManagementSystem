@@ -21,7 +21,8 @@ public class NotificationNameDAO extends DAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                NotificationName notificationName = new NotificationName(
+                NotificationName notificationName = new NotificationName();
+                notificationName.setNotificationName(
                     rs.getInt("notification"),
                     rs.getString("notificationname")
                 );
