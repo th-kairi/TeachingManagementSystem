@@ -5,7 +5,22 @@
 <c:param name="title">経理本科教務システム</c:param>
 
 <c:param name="body">
+<style>
 
+table {
+  table-layout: fixed;
+  border: 1.1px solid #000;
+  border-collapse: separate; //デフォルト値なのでなくてもOK
+  border-spacing: 0px;
+  width: 500px;
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 1px;
+  }
+}
+
+</style>
 <h2 class="navbar-brand"><a class="nav-link active" href="/TeachingManagementSystem/dataManagement">データチェック用のページです</a></h2>
 
     <table border="1">
