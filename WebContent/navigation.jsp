@@ -7,6 +7,7 @@
 			<h2 class="navbar-brand"><a class="nav-link active" href="/TeachingManagementSystem/">出欠席・成績管理システム</a></h2>
 		</div>
 
+            <p style="font-size: 5px; mix-blend-mode:overlay;"><a  href="/TeachingManagementSystem/dataManagement/ClassListDataCheck">データ確認画面</a></p>
 		<div class="col-5 collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
 				<c:choose>
