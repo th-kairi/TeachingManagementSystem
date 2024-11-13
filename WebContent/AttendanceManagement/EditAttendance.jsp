@@ -79,7 +79,7 @@
 			</div>
 			<p>理由</p>
 			<input type="text" name="reason" value="${ reason }">
-			<input type="submit" value="確定"><button type='button' class=close>キャンセル</button>
+			<input type="submit" value="確定"><button type='button' id="cancel" class=close>キャンセル</button>
 		</form>
     	</div>
     </div>
