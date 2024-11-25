@@ -23,7 +23,7 @@ table {
 
 <h2 class="navbar-brand"><a class="nav-link active" href="/TeachingManagementSystem/dataManagement">データチェック用のページです</a></h2>
 
-    <table class="scrolltable">
+    <table border="1">
 		<thead>
 	        <tr>
 	            <th>スタッフID</th>

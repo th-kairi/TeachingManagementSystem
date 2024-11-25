@@ -6,22 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Student;
-import dao.StudentDAO;
+import bean.Staff;
+import dao.StaffDAO;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns={"/dataManagement/StudentDataCheck"})
-public class StaffDataCheck extends CommonServlet {
+@WebServlet(urlPatterns={"/dataManagement/StaffDataCheck"})
+public class StudentDataCheck extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
-		StudentDAO dao = new StudentDAO();
+		StaffDAO dao = new StaffDAO();
 
-		List<Student> studentList = dao.all();
-        req.setAttribute("studentList", studentList);
-        req.getRequestDispatcher("/DataManagement/student.jsp").forward(req, resp);
+		List<Staff> staffList = dao.all();
+        req.setAttribute("staffList", staffList);
+        req.getRequestDispatcher("/DataManagement/staff.jsp").forward(req, resp);
 
 	}
 

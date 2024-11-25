@@ -11,7 +11,7 @@ table {
   table-layout: fixed;
   border: 1.1px solid #000;
   border-spacing: 0px;
-  width: 500px;
+  width: 100%;
   th,
   td {
     border: 1px solid #ddd;
@@ -32,12 +32,14 @@ table {
 			<th>退学フラグ</th>
         </tr>
         <c:if test="${not empty studentList}">
-            <c:forEach var="staff" items="${studentList}">
+            <c:forEach var="student" items="${studentList}">
                 <tr>
-                    <td>${student.staffID}</td>
+                    <td>${student.studentID}</td>
                     <td>${student.name}</td>
-                    <td>${student.password}</td>
-                    <td>${student.KFlag}</td>
+                    <td>${student.sex}</td>
+                    <td>${student.studentTEL}</td>
+                    <td>${student.parentTEL}</td>
+                    <td>${student.dropFlag}</td>
                 </tr>
             </c:forEach>
         </c:if>
