@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,4 +83,57 @@ public class AttendanceDAO extends DAO {
 			pstmt.executeUpdate();
 		}
 	}
+
+	public boolean getByID(String studentid,Date atdate) throws Exception {
+
+		Connection connection;
+		try {
+			connection = getConnection();
+
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+
+
+		PreparedStatement statement = null;
+
+		try {
+			String sql = "SELECT * from attendance WHERE studentid = ? AND atdate = ?";
+			statement = connection.prepareStatement(sql);
+
+			statement.setString(1, studentid);
+			statement.setDate(2, atdate);
+
+			ResultSet rs = statement.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			} else {
+				return false;
+
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+	}
+
 }

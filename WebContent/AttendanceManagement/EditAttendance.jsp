@@ -35,7 +35,7 @@
 					<!-- 学籍番号ごとに行を生成 -->
 					<c:forEach var="attendance" items="${attendanceList}">
 						<c:if test="${attendance.studentID != lastStudentID}">
-							<!--  学籍番号が変わったので、その行を閉じてから処理する --> 
+							<!--  学籍番号が変わったので、その行を閉じてから処理する -->
 							<!--  firstの時はまだどの学籍番号も処理していない。それ以外だけ行を閉じる -->
 							<c:if test="${lastStudentID != 'first'}"></tr></c:if>
 
@@ -46,12 +46,13 @@
 						</c:if>
 						<td>
 							<img class="attendance_image" src="${pageContext.request.contextPath}/static/img/attendance${attendance.attendance}.png"
-								data-studentid="${attendance.studentID}" 
-								data-studentname="${studentMap[attendance.studentID].name}" 
-								data-yearmonth="${yearmonth}" 
-								data-date="${date}" 
-								data-attendance="${attendance.attendance}" 
+								data-studentid="${attendance.studentID}"
+								data-studentname="${studentMap[attendance.studentID].name}"
+								data-yearmonth="${yearmonth}"
+								data-date="${date}"
+								data-attendance="${attendance.attendance}"
 								data-atreason="${attendance.atReason}"
+								data-atdate="${attendance.atDate}"
 							/>
 						</td><!-- 出欠  -->
 						<c:set var="lastStudentID" value="${attendance.studentID}" />
@@ -68,10 +69,10 @@
 
 	<%-- ポップアップ画面レイアウトここから --%>
 	<div id="bg">
-    <div class="select">
-    	<!-- 学籍番号と名前を表示 -->
-    	<p>学籍番号：${attendance.studentID}　${studentMap[attendance.studentID].name}</p>
+    	<div class="select" id="formid">
     	<form action="./show" method="post">
+    	<!-- 学籍番号と名前を表示 -->
+    	<p>学籍番号：<label id="studentid"></label>　氏名：<label id="name"></label>　日付：<label id="date"></label></p>
     		<div class="col-4">
 				<label>出席状況</label>
 				<select name="syusseki"id="syusseki">
@@ -87,7 +88,11 @@
 				</select>
 			</div>
 			<p>理由</p>
-			<input type="text" name="reason" value="${ reason }">
+			<label id="studentidinput"></label>
+			<label id="dateinput"></label>
+			<input type="text" name="reason" value="" id="reason">
+			<input type="hidden" name="yearmonth"  value="${yearmonth}">
+			<input type="hidden" name="classCd"  value="${classCd}">
 			<input type="submit" value="確定"><button type='button' id="cancel" class=close>キャンセル</button>
 		</form>
     	</div>
@@ -103,15 +108,15 @@
 		div#bg{
 		  position: absolute;        /* 親要素に対して絶対座標で表示 */
 		  display: none;             /* 初期状態は非表示 */
-		  top: 200; left: 200;           /* 左上隅から表示 */
+		  top: 0; left: 0;           /* 左上隅から表示 */
 		  width: 100%; height: 100%; /* 画面いっぱいに表示 */
 		  background-color: rgba(0, 0, 0, 0.5); /* 背景は黒色透過 */
 		}
 		/* モーダル画面(選択肢一覧画面)本体 */
 		div.select{
 		  position: absolute;
-		  top: 1rem; left: 50%;
-		  transform: translateX(-50%);
+		  top: 0px; left: 0px;
+		  transform: translateX(0%);
 		  width: 80%;
 		  background-color: #fff;
 		  padding: 1rem;
@@ -124,27 +129,7 @@
 	<script src="${pageContext.request.contextPath}/static/js/attendance.js"></script>
 
 
-	<%-- ポップアップ画面を表示させるjavascriptここから --%>
-	<script>
-		$(function(){
-			  // 選択肢表示画面を表示
-			  $('input.selectId').click(function(){
-			    openSelectWindow("#bg");
-			  });
-			});
 
-			// 選択肢表示画面を表示：汎用的に使えるように分離
-			function openSelectWindow(bgId){
-			  // 本関数が呼ばれたら表示
-			  $(bgId).css("display","block");
-
-			  $(bgId+' .close').unbind().click(function(){
-			    $(bgId).css("display","none");
-			  });
-
-			}
-	</script>
-	<%-- ポップアップ画面を表示させるjavascriptここまで --%>
 
 </c:param>
 

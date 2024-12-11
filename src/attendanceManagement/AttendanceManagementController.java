@@ -1,8 +1,9 @@
 package attendanceManagement;
 
+
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Attendance;
 import bean.AttendanceName;
 import bean.Student;
+import dao.AttendanceDAO;
 import dao.AttendanceManagementDAO;
 import dao.AttendanceNameDAO;
 import tool.CommonServlet;
@@ -42,6 +44,33 @@ public class AttendanceManagementController extends CommonServlet {
 	 */
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		// ポップアップ画面で確定ボタンを押した場合ここから ////////////////////////////////////////////////
+		String syusseki = req.getParameter("syusseki");
+		if (syusseki != null) {
+				String reason = req.getParameter("reason");
+ 				String studentid = req.getParameter("studentid");
+				String atdate = req.getParameter("atdate");
+				Date sqlDate= Date.valueOf(atdate);
+
+				AttendanceDAO attendanceDAO = new AttendanceDAO();
+				boolean getByIdReturn = attendanceDAO.getByID(studentid,sqlDate);
+				System.out.println(getByIdReturn);
+
+				if (getByIdReturn == true) {
+					//ATTENDANCEテーブルの更新
+					Attendance attendanceupdate = new Attendance();
+					attendanceupdate.setAttendance(studentid,syusseki,reason,sqlDate,false);
+					attendanceDAO.update(attendanceupdate);
+				} else {
+					//ATTENDANCEテーブルの挿入
+					// new Attendance("学生番号","出席状況","出欠理由",日付,出席確定フラグ);　new Attendance("2425006","1","理由渡辺",sqlDate,false);
+					Attendance attendanceinsert = new Attendance();
+					attendanceinsert.setAttendance(studentid,syusseki,reason,sqlDate,false);
+					attendanceDAO.insert(attendanceinsert);
+				}
+		}
+		// ポップアップ画面で確定ボタンを押した場合ここまで ////////////////////////////////////////////////
+
 		String stringYearMonth = req.getParameter("yearmonth");
 		String classCd = req.getParameter("classCd");
 
@@ -68,7 +97,7 @@ public class AttendanceManagementController extends CommonServlet {
 			// 入力あり
 		}
 
-		
+
 		System.out.println("year:"+year);
 		System.out.println("month:"+month);
 		System.out.println("classCd:"+classCd);
@@ -91,7 +120,7 @@ public class AttendanceManagementController extends CommonServlet {
 		Map<String, Student> studentMap = AttendanceManagementController.getStudentMap(studentList);
 		// 出欠名を表示できるようMapで持つ
 		Map<String, AttendanceName> attendanceNameMap = AttendanceManagementController.getAttendanceNameMap(attendanceNameList);
-		
+
 		// jsp側に渡すデータ
 		// 年月
 		req.setAttribute("yearmonth", stringYearMonth);
@@ -117,12 +146,12 @@ public class AttendanceManagementController extends CommonServlet {
         }
         return new ArrayList<>(uniqueDates); // 日付をリストとして返す
     }
-    
+
     public static Map<String, Student> getStudentMap(List<Student> studentList) {
         Map<String, Student> studentMap = new HashMap<>();
         studentList.forEach(student -> {
-        	studentMap.put(student.getStudentID(), student); 
-        	
+        	studentMap.put(student.getStudentID(), student);
+
         });
         return studentMap;
     }
@@ -130,8 +159,8 @@ public class AttendanceManagementController extends CommonServlet {
     public static Map<String, AttendanceName> getAttendanceNameMap(List<AttendanceName> attendanceNameList) {
         Map<String, AttendanceName> attendanceNameMap = new HashMap<>();
         attendanceNameList.forEach(attendanceName -> {
-        	attendanceNameMap.put(attendanceName.getAttendance(), attendanceName); 
-        	
+        	attendanceNameMap.put(attendanceName.getAttendance(), attendanceName);
+
         });
         return attendanceNameMap;
     }
