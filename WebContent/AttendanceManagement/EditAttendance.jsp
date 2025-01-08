@@ -18,6 +18,7 @@
 
 	<c:choose>
 		<c:when test="${!empty attendanceList}">
+		<div class="scrolltable">
 			<table border="1">
 				<thead>
 					<tr>
@@ -58,9 +59,9 @@
 						<c:set var="lastStudentID" value="${attendance.studentID}" />
 						<c:set var="date" value="${date + 1}" />
 					</c:forEach>
-					</tr>
 				</tbody>
 			</table>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<p>該当データなし</p>
