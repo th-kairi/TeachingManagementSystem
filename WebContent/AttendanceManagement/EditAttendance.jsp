@@ -18,7 +18,7 @@
 
 	<c:choose>
 		<c:when test="${!empty attendanceList}">
-		<div class="scrolltable">
+		<%--<div class="scrolltable">--%>
 			<table border="1">
 				<thead>
 					<tr><th>備考</th>
@@ -62,10 +62,10 @@
 								<td>${attendance.attendanceAbsenceSum}</td><!-- 欠席  -->
 								<td>${attendance.attendanceLatenessSum}</td><!-- 遅刻  -->
 								<td>${attendance.attendanceEarlySum}</td><!-- 早退  -->
-								<td>${attendance.studentID}</td><!-- 他欠  -->
+								<td>${attendance.attendanceOtherSum}</td><!-- 他欠  -->
 								<td>${attendance.attendanceMonthSum}</td><!-- 今月累計  -->
 								<td>${attendance.attendanceAllSum}</td><!-- 総累計  -->
-								<td>${attendance.studentID}</td><!-- (休学)  -->
+								<td>${attendance.attendanceSuspensionSum}</td><!-- (休学)  -->
 
 						</c:if>
 						<td>
@@ -84,14 +84,11 @@
 						<c:set var="date" value="${date + 1}" />
 
 					</c:forEach>
-<<<<<<< HEAD
 
 					</tr>
-=======
->>>>>>> branch 'master' of https://github.com/th-kairi/TeachingManagementSystem.git
 				</tbody>
 			</table>
-			</div>
+			<%--</div>--%>
 		</c:when>
 		<c:otherwise>
 			<p>該当データなし</p>

@@ -113,6 +113,20 @@ public class AttendanceManagementDAO extends DAO {
 				+ " WHERE STUDENTID = tbl1.studentid"
 				+ "   AND ATTENDANCE IN ('3', '23') AND ATDATE >= ? AND ATDATE <= ?"
 				+ " GROUP BY STUDENTID"
+				+ " ),"
+				+ " (SELECT "
+				+ "        COUNT(*) AS ATTENDANCE_OTHER_SUM"
+				+ " FROM attendance"
+				+ " WHERE STUDENTID = tbl1.studentid"
+				+ "   AND ATTENDANCE IN ('4') AND ATDATE >= ? AND ATDATE <= ?"
+				+ " GROUP BY STUDENTID"
+				+ " ),"
+				+ " (SELECT "
+				+ "        COUNT(*) AS ATTENDANCE_SUSPENSION_SUM"
+				+ " FROM attendance"
+				+ " WHERE STUDENTID = tbl1.studentid"
+				+ "   AND ATTENDANCE IN ('5') AND ATDATE >= ? AND ATDATE <= ?"
+				+ " GROUP BY STUDENTID"
 				+ " )"
 				+ "  FROM "
 				+ "      ("
@@ -168,7 +182,11 @@ public class AttendanceManagementDAO extends DAO {
 			pstmt.setDate(8, sqlLastDate);
 			pstmt.setDate(9, sqlFirstDate);
 			pstmt.setDate(10, sqlLastDate);
-			pstmt.setString(11, classCd);
+			pstmt.setDate(11, sqlFirstDate);
+			pstmt.setDate(12, sqlLastDate);
+			pstmt.setDate(13, sqlFirstDate);
+			pstmt.setDate(14, sqlLastDate);
+			pstmt.setString(15, classCd);
 
 			ResultSet rs = pstmt.executeQuery();
 
@@ -184,7 +202,9 @@ public class AttendanceManagementDAO extends DAO {
 						rs.getDouble("ATTENDANCE_MONTH_SUM"),
 						rs.getInt("ATTENDANCE_ABSENCE_SUM"),
 						rs.getInt("ATTENDANCE_LATENESS_SUM"),
-						rs.getInt("ATTENDANCE_EARLY_SUM")
+						rs.getInt("ATTENDANCE_EARLY_SUM"),
+						rs.getInt("ATTENDANCE_OTHER_SUM"),
+						rs.getInt("ATTENDANCE_SUSPENSION_SUM")
 						);
 				attendanceList.add(attendance);
 			}

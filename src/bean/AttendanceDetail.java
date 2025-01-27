@@ -60,9 +60,20 @@ public class AttendanceDetail implements Serializable {
 	 */
 	private int attendanceEarlySum;
 
+	/**
+	 * その他欠席
+	 */
+	private int attendanceOtherSum;
+
+	/**
+	 * 休学
+	 */
+	private int attendanceSuspensionSum;
+
 
     public void setAttendance(String studentID, String attendance, String atReason, Date atDate, boolean point
-    		, double attendanceAllSum, double attendanceMonthSum, int attendanceAbsenceSum, int attendanceLatenessSum, int attendanceEarlySum) {
+    		, double attendanceAllSum, double attendanceMonthSum, int attendanceAbsenceSum, int attendanceLatenessSum, int attendanceEarlySum
+    		, int attendanceOtherSum, int attendanceSuspensionSum) {
         this.studentID = studentID;
         this.attendance = attendance;
         this.atReason = atReason;
@@ -73,6 +84,8 @@ public class AttendanceDetail implements Serializable {
         this.attendanceAbsenceSum = attendanceAbsenceSum;
         this.attendanceLatenessSum = attendanceLatenessSum;
         this.attendanceEarlySum = attendanceEarlySum;
+        this.attendanceOtherSum = attendanceOtherSum;
+        this.attendanceSuspensionSum = attendanceSuspensionSum;
     }
 
 	public String getStudentID() {
@@ -154,5 +167,22 @@ public class AttendanceDetail implements Serializable {
 	public void setAttendanceEarlySum(int attendanceEarlySum) {
 		this.attendanceEarlySum = attendanceEarlySum;
 	}
+
+	public int getAttendanceOtherSum() {
+		return attendanceOtherSum;
+	}
+
+	public void setAttendanceOtherSum(int attendanceOtherSum) {
+		this.attendanceOtherSum = attendanceOtherSum;
+	}
+
+	public int getAttendanceSuspensionSum() {
+		return attendanceSuspensionSum;
+	}
+
+	public void setAttendanceSuspensionSum(int attendanceSuspensionSum) {
+		this.attendanceSuspensionSum = attendanceSuspensionSum;
+	}
+
 
 }
