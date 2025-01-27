@@ -18,6 +18,7 @@
 
 	<c:choose>
 		<c:when test="${!empty attendanceList}">
+		<div class="scrolltable">
 			<table border="1">
 				<thead>
 					<tr><th>備考</th>
@@ -83,10 +84,14 @@
 						<c:set var="date" value="${date + 1}" />
 
 					</c:forEach>
+<<<<<<< HEAD
 
 					</tr>
+=======
+>>>>>>> branch 'master' of https://github.com/th-kairi/TeachingManagementSystem.git
 				</tbody>
 			</table>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<p>該当データなし</p>
