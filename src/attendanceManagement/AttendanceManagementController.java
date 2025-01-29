@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Attendance;
+import bean.AttendanceDetail;
 import bean.AttendanceName;
+import bean.AttendanceTuti;
 import bean.Student;
 import dao.AttendanceDAO;
 import dao.AttendanceManagementDAO;
@@ -106,11 +108,17 @@ public class AttendanceManagementController extends CommonServlet {
 		AttendanceNameDAO attendanceNameDAO = new AttendanceNameDAO();
 
 		List<Student> studentList = null;
-		List<Attendance> attendanceList = null;
+		List<AttendanceDetail> attendanceList = null;
+		//////////////ここから通知対象取得処理////////////////////////////////////////////////
+		List<AttendanceTuti> attendanceTutiList = null;
+		//////////////ここまで通知対象取得処理////////////////////////////////////////////////
 		List<AttendanceName> attendanceNameList = null;
 
 		studentList = attendanceManagementDAO.getStudentsByClassCd(classCd);
 		attendanceList = attendanceManagementDAO.getAttendancesByClassCd(classCd, year, month);
+		//////////////ここから通知対象取得処理////////////////////////////////////////////////
+		attendanceTutiList = attendanceManagementDAO.getTuti(classCd);
+		//////////////ここまで通知対象取得処理////////////////////////////////////////////////
 		attendanceNameList = attendanceNameDAO.all();
 
 		// jspに渡すためにデータを加工
@@ -120,6 +128,9 @@ public class AttendanceManagementController extends CommonServlet {
 		Map<String, Student> studentMap = AttendanceManagementController.getStudentMap(studentList);
 		// 出欠名を表示できるようMapで持つ
 		Map<String, AttendanceName> attendanceNameMap = AttendanceManagementController.getAttendanceNameMap(attendanceNameList);
+		//////////////ここから通知対象取得処理////////////////////////////////////////////////
+		Map<String, String> studentTutiMap = AttendanceManagementController.getTutiMap(attendanceTutiList);;
+		//////////////ここまで通知対象取得処理////////////////////////////////////////////////
 
 		// jsp側に渡すデータ
 		// 年月
@@ -134,14 +145,19 @@ public class AttendanceManagementController extends CommonServlet {
 		req.setAttribute("attendanceList", attendanceList);
 		// 該当月の日付リスト
 		req.setAttribute("uniqueDates", uniqueDates);
+		//////////////ここから通知対象取得処理////////////////////////////////////////////////
+		// 通知状況
+		// req.setAttribute("attendanceTutiList", attendanceTutiList);
+		req.setAttribute("attendanceTutiList", studentTutiMap);
+		//////////////ここまで通知対象取得処理////////////////////////////////////////////////
 
 		// 画面遷移
 		req.getRequestDispatcher("/AttendanceManagement/EditAttendance.jsp").forward(req, resp);
 	}
 
-    public static List<Date> getUniqueDates(List<Attendance> attendanceList) {
+    public static List<Date> getUniqueDates(List<AttendanceDetail> attendanceList) {
         Set<Date> uniqueDates = new TreeSet<>();
-        for (Attendance attendance : attendanceList) {
+        for (AttendanceDetail attendance : attendanceList) {
             uniqueDates.add(attendance.getAtDate());
         }
         return new ArrayList<>(uniqueDates); // 日付をリストとして返す
@@ -164,4 +180,14 @@ public class AttendanceManagementController extends CommonServlet {
         });
         return attendanceNameMap;
     }
+    //////////////ここから通知対象取得処理////////////////////////////////////////////////
+    public static Map<String, String> getTutiMap(List<AttendanceTuti> studentList) {
+        Map<String, String> AttendanceTutiMap = new HashMap<>();
+        studentList.forEach(AttendanceTuti -> {
+        	AttendanceTutiMap.put(AttendanceTuti.getStudentID(), AttendanceTuti.getTutiStatus());
+
+        });
+        return AttendanceTutiMap;
+    }
+    //////////////ここまで通知対象取得処理////////////////////////////////////////////////
 }

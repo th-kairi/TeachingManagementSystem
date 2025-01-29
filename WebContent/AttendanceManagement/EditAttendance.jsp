@@ -21,10 +21,17 @@
 		<div class="scrolltable">
 			<table>
 				<thead>
-					<tr>
+					<tr><th>備考</th>
 						<th>学籍番号</th>
 						<th>氏名</th>
 
+						<th>欠席</th>
+						<th>遅刻</th>
+						<th>早退</th>
+						<th>他欠</th>
+						<th>今月累計</th>
+						<th>総累計</th>
+						<th>(休学)</th>
 						<!-- 日付の列を動的に生成 -->
 						<c:forEach var="date" items="${uniqueDates}">
 							<th><fmt:formatDate value="${date}" pattern="d" />日</th>
@@ -39,12 +46,27 @@
 						<c:if test="${attendance.studentID != lastStudentID}">
 							<!--  学籍番号が変わったので、その行を閉じてから処理する -->
 							<!--  firstの時はまだどの学籍番号も処理していない。それ以外だけ行を閉じる -->
-							<c:if test="${lastStudentID != 'first'}"></tr></c:if>
+							<c:if test="${lastStudentID != 'first'}">
+
+							</tr></c:if>
 
 							<c:set var="date" value="1" />
 							<tr>
+
+								<!-- 備考(通知発送対象)ここから  -->
+								<td>${attendanceTutiList[attendance.studentID]}</td><!-- 備考  -->
+								<!-- 備考(通知発送対象)ここまで  -->
 								<td>${attendance.studentID}</td><!-- 学籍番号  -->
 								<td>${studentMap[attendance.studentID].name}</td><!-- 氏名  -->
+
+								<td>${attendance.attendanceAbsenceSum}</td><!-- 欠席  -->
+								<td>${attendance.attendanceLatenessSum}</td><!-- 遅刻  -->
+								<td>${attendance.attendanceEarlySum}</td><!-- 早退  -->
+								<td>${attendance.attendanceOtherSum}</td><!-- 他欠  -->
+								<td>${attendance.attendanceMonthSum}</td><!-- 今月累計  -->
+								<td>${attendance.attendanceAllSum}</td><!-- 総累計  -->
+								<td>${attendance.attendanceSuspensionSum}</td><!-- (休学)  -->
+
 						</c:if>
 						<td>
 							<img class="attendance_image" src="${pageContext.request.contextPath}/static/img/attendance${attendance.attendance}.png"
@@ -60,6 +82,8 @@
 						<c:set var="lastStudentID" value="${attendance.studentID}" />
 						<c:set var="date" value="${date + 1}" />
 					</c:forEach>
+
+					</tr>
 				</tbody>
 			</table>
 			</div>
@@ -84,9 +108,9 @@
 					<option value="3">早退</option>
 					<option value="4">その他欠席</option>
 					<option value="5">休学中</option>
-					<option value="6">退学者</option>
-					<option value="7">休日</option>
-					<option value="8">遅刻+早退</option>
+					<option value="8">退学者</option>
+					<option value="9">休日</option>
+					<option value="23">遅刻+早退</option>
 				</select>
 			</div>
 			<p>理由</p>
