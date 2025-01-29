@@ -13,7 +13,7 @@
 	<h5>成績管理</h5>
     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ms-3">
 		<li><a href="">成績入力</a></li>
-		<li><a href="">学生別成績</a></li>
+		<li><a href="/TeachingManagementSystem/DataManagement/StudentGradeRegistration">学生別成績</a></li>
 		<li><a href="">得点取り込み</a></li>
     </ul>
 </div>
