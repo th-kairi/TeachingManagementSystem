@@ -19,14 +19,15 @@
 	<c:choose>
 		<c:when test="${!empty attendanceList}">
 		<div class="scrolltable">
-			<table border="1">
+			<table>
 				<thead>
 					<tr>
 						<th>学籍番号</th>
 						<th>氏名</th>
+
 						<!-- 日付の列を動的に生成 -->
 						<c:forEach var="date" items="${uniqueDates}">
-						<th><fmt:formatDate value="${date}" pattern="d" />日</th>
+							<th><fmt:formatDate value="${date}" pattern="d" />日</th>
 						</c:forEach>
 					</tr>
 				</thead>
@@ -101,7 +102,7 @@
 	<%-- ポップアップ画面レイアウトここまで --%>
 
 	<style>
-		table, td, th { border: 2px #808080 solid; }
+		/*	table, td, th { border: 2px #808080 solid; }	*/
 		.attendance_image {width: 30px; height: 30px; }
 
 		<%-- ポップアップ画面表示の際のcssここから --%>
@@ -118,7 +119,7 @@
 		  position: absolute;
 		  top: 0px; left: 0px;
 		  transform: translateX(0%);
-		  width: 80%;
+		  width: 40%;
 		  background-color: #fff;
 		  padding: 1rem;
 		}
@@ -128,9 +129,6 @@
 
 
 	<script src="${pageContext.request.contextPath}/static/js/attendance.js"></script>
-
-
-
 
 </c:param>
 
