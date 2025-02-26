@@ -61,7 +61,7 @@ public class AttendanceManagementDAO extends DAO {
 		Date sqlLastDate = Date.valueOf(lastDay);
 
 		String sql = "SELECT"
-				+ "      tbl1.studentid, tbl1.date, attendance.attendance, attendance.atreason, attendance.point ,"
+				+ "      tbl1.studentid, tbl1.date, tbl1.studenttel, attendance.attendance, attendance.atreason, attendance.point ,"
 				+ " (SELECT "
 				+ "        SUM("
 				+ "            CASE "
@@ -204,7 +204,8 @@ public class AttendanceManagementDAO extends DAO {
 						rs.getInt("ATTENDANCE_LATENESS_SUM"),
 						rs.getInt("ATTENDANCE_EARLY_SUM"),
 						rs.getInt("ATTENDANCE_OTHER_SUM"),
-						rs.getInt("ATTENDANCE_SUSPENSION_SUM")
+						rs.getInt("ATTENDANCE_SUSPENSION_SUM"),
+						rs.getString("studenttel")
 						);
 				attendanceList.add(attendance);
 			}

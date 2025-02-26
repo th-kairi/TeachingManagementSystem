@@ -76,6 +76,7 @@
 								data-attendance="${attendance.attendance}"
 								data-atreason="${attendance.atReason}"
 								data-atdate="${attendance.atDate}"
+								data-studenttel="${attendance.studenttel}"
 							/>
 						</td><!-- 出欠  -->
 						<c:set var="lastStudentID" value="${attendance.studentID}" />
@@ -98,6 +99,7 @@
     	<form action="./show" method="post">
     	<!-- 学籍番号と名前を表示 -->
     	<p>学籍番号：<label id="studentid"></label>　氏名：<label id="name"></label>　日付：<label id="date"></label></p>
+    	<p>電話番号：<label id="studenttel"></label></p>
     		<div class="col-4">
 				<label>出席状況</label>
 				<select name="syusseki"id="syusseki">

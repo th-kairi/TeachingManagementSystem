@@ -25,6 +25,7 @@ images.forEach((image) => {
 	console.log("出欠:" + clickedImage.dataset.attendance);
 	console.log("理由:" + clickedImage.dataset.atreason);
 	console.log("日付:" + clickedImage.dataset.atdate);
+	console.log("電話番号:" + clickedImage.dataset.studenttel);
 	input_dialog.style.display = 'block';
     var studentID = clickedImage.dataset.studentid;
     document.getElementById('studentid').innerHTML = studentID ;
@@ -34,6 +35,8 @@ images.forEach((image) => {
     document.getElementById('reason').innerHTML = reason ;
     var date = clickedImage.dataset.atdate;
     document.getElementById('date').innerHTML = date ;
+    var studenttel = clickedImage.dataset.studenttel;
+    document.getElementById('studenttel').innerHTML = studenttel ;
     var dateInput = "<input type=\"hidden\" name=\"atdate\"  value=\""+clickedImage.dataset.atdate+"\">";
     document.getElementById('dateinput').innerHTML = dateInput ;
     var studentIDInput = "<input type=\"hidden\" name=\"studentid\"  value=\""+clickedImage.dataset.studentid+"\">";
