@@ -35,6 +35,8 @@ public class Attendance implements Serializable {
 	 */
 	private boolean point;
 
+
+
     public void setAttendance(String studentID, String attendance, String atReason, Date atDate, boolean point) {
         this.studentID = studentID;
         this.attendance = attendance;
@@ -82,5 +84,7 @@ public class Attendance implements Serializable {
 	public void setPoint(boolean point) {
 		this.point = point;
 	}
+
+
 
 }

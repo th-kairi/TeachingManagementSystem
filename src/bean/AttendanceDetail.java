@@ -70,10 +70,15 @@ public class AttendanceDetail implements Serializable {
 	 */
 	private int attendanceSuspensionSum;
 
+	/**
+	 * 電話番号
+	 */
+	private String studenttel;
+
 
     public void setAttendance(String studentID, String attendance, String atReason, Date atDate, boolean point
     		, double attendanceAllSum, double attendanceMonthSum, int attendanceAbsenceSum, int attendanceLatenessSum, int attendanceEarlySum
-    		, int attendanceOtherSum, int attendanceSuspensionSum) {
+    		, int attendanceOtherSum, int attendanceSuspensionSum, String studenttel) {
         this.studentID = studentID;
         this.attendance = attendance;
         this.atReason = atReason;
@@ -86,6 +91,7 @@ public class AttendanceDetail implements Serializable {
         this.attendanceEarlySum = attendanceEarlySum;
         this.attendanceOtherSum = attendanceOtherSum;
         this.attendanceSuspensionSum = attendanceSuspensionSum;
+        this.studenttel = studenttel;
     }
 
 	public String getStudentID() {
@@ -182,6 +188,14 @@ public class AttendanceDetail implements Serializable {
 
 	public void setAttendanceSuspensionSum(int attendanceSuspensionSum) {
 		this.attendanceSuspensionSum = attendanceSuspensionSum;
+	}
+
+	public String getStudenttel() {
+		return studenttel;
+	}
+
+	public void setStudenttel(String studenttel) {
+		this.studenttel = studenttel;
 	}
 
 
