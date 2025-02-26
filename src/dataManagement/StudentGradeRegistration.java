@@ -1,16 +1,19 @@
 package dataManagement;
 
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Score;
 import bean.Student;
+import dao.StudentDAO;
 import tool.CommonServlet;
 
 /**
- * @author admin
- *
+ * @author yamamoto
+ * クラス別点数入力画面用
  */
 @WebServlet(urlPatterns = { "/DataManagement/StudentGradeRegistration" })
 public class StudentGradeRegistration extends CommonServlet {
@@ -19,27 +22,31 @@ public class StudentGradeRegistration extends CommonServlet {
 		// TODO 自動生成されたメソッド・スタブ
 		//別画面からの画面遷移時の挙動（初期表示）「
 		req.getRequestDispatcher("/DataManagement/StudentGradeRegistration.jsp").forward(req, resp);
-
 	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
-		// TODO データベースアクセスの前にダミーデータで動作確認
-		String studentID = "2501001";
-		String name = "大原太郎";
-		String sex = "男";
-		String studentTEL = "09012345678";
-		String parentTEL  = "09087654321";
-		boolean dropFlag = false;
+		System.out.println("ダミーデータ：");//TODO デバッグ
 
-		//Strudent headerData = new Student(,'f');
+		// TODO データベースアクセスの前にダミーデータで動作確認
+		//String studentID = "2501001";
+		//String name = "大原22太郎";
+		//String sex = "男";
+		//String studentTEL = "09012345678";
+		//String parentTEL  = "09087654321";
+		//boolean dropFlag = false;
 
 
 		//TODO DAOアクセスがうまくいかない
 		Student myData = new Student();
-		myData.setStudent(studentID,name,sex,studentTEL,parentTEL,dropFlag);
+		StudentDAO stDao = new StudentDAO();
+
+		List<Student> tempALLStudent = stDao.all();
+
+		//Student myData2 = new Student();
+		myData = tempALLStudent.get(0);
 
 		//DB登録できるようなソースを書かないといけない
 
@@ -77,11 +84,9 @@ public class StudentGradeRegistration extends CommonServlet {
 		req.setAttribute("ALLGrade2", strArrayALL);
 		req.setAttribute("errMessage", "");
 
-
-		System.out.println("ここまでうごいた："+myData.getName());//TODO デバッグ
+		System.out.println("ここまでうごいた_変更が反映されない："+myData.getName());//TODO デバッグ
 
 		req.getRequestDispatcher("/DataManagement/StudentGradeRegistration.jsp").forward(req, resp);
-
 
 	}
 }

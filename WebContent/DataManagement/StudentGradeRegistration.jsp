@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/base.jsp">
 
-	<c:param name="title">カレンダー取り込み画面</c:param>
+	<c:param name="title">学生別成績処理画面</c:param>
 
 	<c:param name="body">
 	    <!-- Latest compiled and minified JavaScript -->
