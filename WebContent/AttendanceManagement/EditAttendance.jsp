@@ -62,8 +62,10 @@
 								<td>${attendance.attendanceLatenessSum}</td><!-- 遅刻  -->
 								<td>${attendance.attendanceEarlySum}</td><!-- 早退  -->
 								<td>${attendance.attendanceOtherSum}</td><!-- 他欠  -->
-								<td>${attendance.attendanceMonthSum}</td><!-- 今月累計  -->
-								<td>${attendance.attendanceAllSum}</td><!-- 総累計  -->
+								<td><fmt:formatNumber value="${attendance.attendanceMonthSum}"
+								maxIntegerDigits="3" maxFractionDigits="3"/></td><!-- 今月累計  -->
+								<td><fmt:formatNumber value="${attendance.attendanceAllSum}"
+								maxIntegerDigits="3" maxFractionDigits="3"/></td><!-- 総累計  -->
 								<td>${attendance.attendanceSuspensionSum}</td><!-- (休学)  -->
 
 						</c:if>

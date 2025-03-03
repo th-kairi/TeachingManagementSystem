@@ -9,7 +9,7 @@
   border-collapse: separate;
   border-spacing: 0;
   empty-cells: show;
-  width: 1480px;
+  width: 3480px;
 }
 .scrolltable table th, .scrolltable table td {
   padding: 0.1rem 0rem 0.1rem 0.5rem;
@@ -41,6 +41,13 @@
   z-index: 10;
   background: #f4f4f4;
 }
+.scrolltable table thead tr:first-of-type th:nth-of-type(3) {
+    position: sticky;
+    top: 0;
+    left: 200px;
+    z-index: 10;
+    background: #f4f4f4;
+  }
 .scrolltable table thead tr:first-of-type th:not(:first-of-type, :nth-of-type(2)) {
   position: sticky;
   top: 0;
@@ -59,4 +66,10 @@
   width: 100px;
   background: #f4f4f4;
 }
+.scrolltable table td:nth-of-type(3) {
+    position: sticky;
+    left: 200px;
+    width: 100px;
+    background: #f4f4f4;
+  }
 
