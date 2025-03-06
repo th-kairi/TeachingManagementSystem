@@ -25,7 +25,7 @@ public class ScoreManagementController extends CommonServlet {
 		String classCd = req.getParameter("classCd");
 		String subjectCd = req.getParameter("subjectCd");
 
-		
+
 		// データの取得
 		ScoreManagementDAO scoreManagementDAO = new ScoreManagementDAO();
 
@@ -33,9 +33,12 @@ public class ScoreManagementController extends CommonServlet {
 
 		scoreDetailList = scoreManagementDAO.getScoreByClassCdSubjectCd(classCd, subjectCd);
 
+	    // 取得したデータをリクエストスコープに格納
 		req.setAttribute("scoreDetailList", scoreDetailList);
+	    req.setAttribute("classCd", classCd);  // classCd もJSPで使えるようにする
+	    req.setAttribute("subjectCd", subjectCd);  // subjectCd もJSPで使えるようにする
 
-		
+
 		// 画面遷移
 		req.getRequestDispatcher("/ScoreManagement/ShowScore.jsp").forward(req, resp);
 	}
