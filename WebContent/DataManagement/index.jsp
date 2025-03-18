@@ -12,6 +12,7 @@
 	<li><a class="nav-link active" href="/TeachingManagementSystem/dataManagement/StaffDataCheck">Staff</a></li>
 	<li><a class="nav-link active" href="/TeachingManagementSystem/dataManagement/ClassListDataCheck">ClassList</a></li>
 	<li><a class="nav-link active" href="/TeachingManagementSystem/dataManagement/StudentDataCheck">Student</a></li>
+	<li><a class="nav-link active" href="/TeachingManagementSystem/dataManagement/SubjectDataCheck">Subject</a></li>
 
 </ul>
 

@@ -15,6 +15,6 @@
     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ms-3">
         <li><a href="">成績入力</a></li>
         <li><a href="/TeachingManagementSystem/ScoreManagement/show">成績参照</a></li>
-        <li><a href="">得点取り込み</a></li>
+        <li><a href="/TeachingManagementSystem/ScoreManagement/ScoreUpload">得点取り込み</a></li>
     </ul>
 </div>

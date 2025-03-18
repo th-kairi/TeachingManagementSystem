@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.ScoreDetail;
-import dao.ScoreManagementDAO;
+import dao.ScoreDAO;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns = { "/ScoreManagement/show" })
@@ -24,14 +24,12 @@ public class ScoreManagementController extends CommonServlet {
 
 		String classCd = req.getParameter("classCd");
 		String subjectCd = req.getParameter("subjectCd");
-
-
-		// データの取得
-		ScoreManagementDAO scoreManagementDAO = new ScoreManagementDAO();
-
 		List<ScoreDetail> scoreDetailList = null;
 
-		scoreDetailList = scoreManagementDAO.getScoreByClassCdSubjectCd(classCd, subjectCd);
+		// データの取得
+
+		ScoreDAO scoreDAO = new ScoreDAO();
+		scoreDetailList = scoreDAO.getScoreByClassCdSubjectCd(classCd, subjectCd);
 
 	    // 取得したデータをリクエストスコープに格納
 		req.setAttribute("scoreDetailList", scoreDetailList);
