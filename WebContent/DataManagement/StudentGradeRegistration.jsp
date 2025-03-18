@@ -12,16 +12,17 @@
 
         <h1>学生毎成績登録</h1>
 <%
-  String strError1 = "エラーメッセージ領域";
+
+  //String strError1 = "エラーメッセージ領域";
   String strError = (String)request.getAttribute("errMessage");
 
 
-  String verTest1 = (String)request.getAttribute("studentID");
-  String verTest2 = (String)request.getAttribute("studentName");
-  String[][]  vertest3 = (String[][])request.getAttribute("ALLGrade");
+  String disStID = (String)request.getAttribute("studentID");
+  String disStName = (String)request.getAttribute("studentName");
+  String[][]  disALLData = (String[][])request.getAttribute("ALLGrade");
 
-  int vertest4 = 0;
-  String[] strArrData1 = {"","","","",""};
+  int dataCnt = 0;
+  //String[] strArrData1 = {"","","","",""};
 
   String strData1 ="";
   String strData2 ="";
@@ -29,26 +30,34 @@
   String strData4 ="";
   String strData5 ="";
 
-  if (verTest1 == null){
-	  verTest1 = "";
+  //初期画面用処理nullが表示されないようにする
+  if (disStID == null){
+	  disStID = "";
   }
 
-  if (verTest2 == null){
-	  verTest2 = "";
+  //初期画面用処理nullが表示されないようにする
+  if (disStName == null){
+	  disStName = "";
   }
 
   //オブジェクトがないときは件数は0件でカウント
-  if (vertest3 == null){
-	  vertest4 = 0;
+  if (disALLData == null){
+	  dataCnt = 1;
+	  disALLData = new String[1][5];
+	  disALLData[0][0] =" ";
+	  disALLData[0][1] =" ";
+	  disALLData[0][2] =" ";
+	  disALLData[0][3] =" ";
+	  disALLData[0][4] =" ";
   }else{
-	  vertest4 = vertest3.length;
+	  dataCnt = disALLData.length;
   }
 
 %>
         <form action="" method="post">
-        	学籍番号 <input type="text" value="<%=verTest1%>">
+        	学籍番号 <input type="text" name="studentID" value="<%=disStID%>">
         	<input type="checkbox" value="isClosedOnSaturdays">履修単位のみ
-        	<input type="submit" value="開始"><%=verTest2%>
+        	<input type="submit" value="開始"><%=disStName%>
 		</form>
 
 		<!--  <div class="scrolltable">>  -->
@@ -67,13 +76,13 @@
 		        </thead>
 		        <tbody>
 		            <%
-		              for(int i=0;i<vertest4;i++){
-		            	  strArrData1 = vertest3[i];
-		            	  strData1 = strArrData1[0];
-		            	  strData2 = strArrData1[1];
-		            	  strData3 = strArrData1[2];
-		            	  strData4 = strArrData1[3];
-		            	  strData5 = strArrData1[4];
+		              for(int i=0;i<dataCnt;i++){
+		            	  //strArrData1 = disALLData[i];
+		            	  strData1 = disALLData[i][0];
+		            	  strData2 = disALLData[i][1];
+		            	  strData3 = disALLData[i][2];
+		            	  strData4 = disALLData[i][3];
+		            	  strData5 = disALLData[i][4];
 		            %>
 		            <tr>
 		                <th><input type="text" name="v1" value=<%=strData1%>></th>
@@ -89,7 +98,7 @@
 			</table>
 		</div>
 
-        	<%=strError%>>
+        	<%=strError%>
         	<input type="checkbox" value="isClosedOnSaturdays">エクセル出力
         	<input type="submit" value="実行">
 			<input type="button" onclick="location.href='../index.jsp'" value="終了">

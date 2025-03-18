@@ -1,5 +1,6 @@
 package dataManagement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Score;
 import bean.Student;
+import dao.ScoreDAO;
 import dao.StudentDAO;
 import tool.CommonServlet;
 
@@ -28,64 +30,57 @@ public class StudentGradeRegistration extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ
 
-		System.out.println("ダミーデータ：");//TODO デバッグ
-
-		// TODO データベースアクセスの前にダミーデータで動作確認
-		//String studentID = "2501001";
-		//String name = "大原22太郎";
-		//String sex = "男";
-		//String studentTEL = "09012345678";
-		//String parentTEL  = "09087654321";
-		//boolean dropFlag = false;
-
-
-		//TODO DAOアクセスがうまくいかない
-		Student myData = new Student();
 		StudentDAO stDao = new StudentDAO();
+		Student myData = stDao.idSearch(req.getParameter("studentID"));//テキストボックスから取得した学籍番号で該当者を検索
 
-		List<Student> tempALLStudent = stDao.all();
+		//List<Student> tempALLStudent = stDao.all();
 
-		//Student myData2 = new Student();
-		myData = tempALLStudent.get(0);
+		String errMessage = "";
+		List<Score> tempALLScore;
+		List<Score> StudentScore;
+        String[][] strArrayALL  = new String[0][0];//メモリリーク無視
 
-		//DB登録できるようなソースを書かないといけない
+		try{
 
-		//学籍番号から成績データを取得
-		//学年,月,科目コード,科目名,科目点数
-		String[] strArray1 = {"1","7","AA1","PythonⅠ","80"};
-		String[] strArray2 = {"1","7","AA2","PythonⅡ","70"};
-		String[] strArray3 = {"1","10","ZZ1","情報基礎1","95"};
-		String[] strArray4 = {"1","12","ZZ2","情報基礎2","90"};
-		String[] strArray5 = {"1","12","ZZ3","情報基礎3","85"};
-
-		Score objScore1 = new Score();
-		Score objScore2 = new Score();
-		Score objScore3 = new Score();
-		Score objScore4 = new Score();
-		Score objScore5 = new Score();
-
-		objScore1.setScore("2501001", "AA1", "2025", "7", 80, 1);
-		objScore2.setScore("2501001", "AA2", "2025", "7", 80, 1);
-		objScore3.setScore("2501001", "ZZ1", "2025", "10", 95, 1);
-		objScore4.setScore("2501001", "ZZ2", "2025", "12", 90, 1);
-		objScore5.setScore("2501001", "ZZ3", "2025", "12", 85, 1);
+    		ScoreDAO scDao = new ScoreDAO();
+		    tempALLScore = scDao.all();
+            StudentScore = new ArrayList<Score>();
 
 
-		Score[] aryScore = {objScore1};
-		String[][] strArrayALL = {strArray1,strArray2,strArray3,strArray4,strArray5};
-		//TODO DAO周りを修正する。
+		    //一旦既存のDAOは壊さないようにALLを使って内部的なLISTを作成する
+		    for (Score s : tempALLScore){
+			    //学籍番号の確認
+			    if(req.getParameter("studentID").equals(s.getStudentID())){
+			        //一致するなら追加
+				    System.out.println(s.getStudentID()+"を追加");
+			        StudentScore.add(s);
+			        //TODU 下の処理、ここでうまくやったらできないかな？
+			    }else{
+				    System.out.println(s.getStudentID()+"を追加しない");
+			    }
+		    }
 
+		    //多分無駄な処理、他の解決方法が思い浮かばない
+		    strArrayALL = new String[StudentScore.size()][5];
+            for(int i=0; i<StudentScore.size();i++){
+        	    strArrayALL[i][0]=StudentScore.get(i).getStudentID();
+        	    strArrayALL[i][1]=StudentScore.get(i).getSubjectCD();
+        	    strArrayALL[i][2]=StudentScore.get(i).getYear();
+        	    strArrayALL[i][3]=StudentScore.get(i).getMonth();
+        	    strArrayALL[i][4]=Integer.toString(StudentScore.get(i).getScore());
+
+            }
+		}catch(Exception e){
+			//errMessage = e.getMessage();
+			errMessage = "エラー発生、正常な入力を入れて再実行してください。";
+		}
 
 		//レコードセットに入れて.jspへデータを送る
 		req.setAttribute("studentID", myData.getStudentID());
 		req.setAttribute("studentName", myData.getName());
 		req.setAttribute("ALLData", myData);
-		req.setAttribute("ALLGrade1", strArrayALL);
-		req.setAttribute("ALLGrade2", strArrayALL);
-		req.setAttribute("errMessage", "");
-
-		System.out.println("ここまでうごいた_変更が反映されない："+myData.getName());//TODO デバッグ
-
+		req.setAttribute("ALLGrade", strArrayALL);//DBから取得したスコアを画面に送信
+		req.setAttribute("errMessage", errMessage);
 		req.getRequestDispatcher("/DataManagement/StudentGradeRegistration.jsp").forward(req, resp);
 
 	}

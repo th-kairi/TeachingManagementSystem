@@ -35,6 +35,31 @@ public class StudentDAO extends DAO {
         return studentList;
     }
 
+    //単独検索
+    public Student idSearch(String lid) throws Exception {
+        Student local_student = new Student();
+        String sql = "SELECT * FROM student where studentID = '" + lid +"'";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+        	//主キーでとってきているので1件の予定
+            rs.next();
+
+            local_student.setStudent(
+                    rs.getString("studentID"),
+                    rs.getString("name"),
+                    rs.getString("sex"),
+                    rs.getString("studentTEL"),
+                    rs.getString("parentTEL"),
+                    rs.getBoolean("dropflag")
+            );
+
+        }
+        return local_student;
+    }
+    
     // データ登録
     public void insert(Student student) throws Exception {
         String sql = "INSERT INTO student (studentID, name, sex, studentTEL, parentTEL, dropflag) VALUES (?, ?, ?, ?, ?, ?)";
