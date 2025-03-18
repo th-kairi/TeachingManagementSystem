@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,25 +131,41 @@ public class ScoreDAO extends DAO {
 		return scoreDetailList;
 	}
 
-    // 一括登録メソッド
-    public void insertScores(List<Score> scores) throws Exception {
+    // 一括登録メソッド（引数: Score型の配列）
+    public String insertScores(Score[] scores) throws Exception {
+    	System.out.println("insertScoresが実行されました ================================-");
         String sql = "INSERT INTO score (studentid, subjectcd, year, month, score, count) VALUES (?, ?, ?, ?, ?, ?)";
+        String message = "登録が完了しました";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            conn.setAutoCommit(false); // トランザクション管理
+
+            // Score配列をループしてバッチ処理
             for (Score score : scores) {
                 pstmt.setString(1, score.getStudentID());
-                pstmt.setString(2, score.getSubjectCD());
-                pstmt.setString(3, score.getYear());
-                pstmt.setString(4, score.getMonth());
+                pstmt.setString(2, score.getSubjectCD());  // subjectCdはScoreオブジェクトから取得
+                pstmt.setString(3, score.getYear());  // YearはScoreオブジェクトから取得
+                pstmt.setString(4, score.getMonth());  // MonthはScoreオブジェクトから取得
                 pstmt.setInt(5, score.getScore());
                 pstmt.setInt(6, score.getCount());
                 pstmt.addBatch();
             }
 
-            pstmt.executeBatch(); // バッチ処理実行
-        }
-    }
+            int[] result = pstmt.executeBatch(); // バッチ処理実行
+            conn.commit(); // コミット
 
+            // 成功したレコード数が0ならエラーメッセージ
+            if (result.length == 0) {
+                message = "データ登録に失敗しました";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            message = "データ登録中にエラーが発生しました";
+            throw e;
+        }
+
+        return message; // 処理結果を返す
+    }
 }
