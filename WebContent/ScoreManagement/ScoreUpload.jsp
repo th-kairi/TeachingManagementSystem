@@ -16,35 +16,33 @@
 
         <div class="container mt-4">
             <h2>得点取り込み</h2>
-            <form id="scoreUploadForm">
-                <div class="form-row">
-                    <!-- 科目選択 -->
-                    <div class="form-group col-md-4">
-                        <label for="subjectCd">科目</label>
-                        <select name="subjectCd" id="subjectCd" class="form-control" required>
-                            <option value="">選択してください</option>
-                            <c:forEach var="subject" items="${subjectList}">
-                                <option value="${subject.subjectCD}">${subject.subjectName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-
-                    <!-- 登録月 -->
-                    <div class="form-group col-md-4">
-                        <label for="regMonth">登録月</label>
-                        <input type="month" id="regMonth" name="regMonth" class="form-control" required>
-                    </div>
-
-                    <!-- CSVファイル選択 -->
-                    <div class="form-group col-md-4">
-                        <label for="fileInput">CSVファイル</label>
-                        <input type="file" class="form-control-file" id="fileInput" name="fileInput" accept=".csv" onchange="handleFileSelect(event)" required>
-                    </div>
+            <div class="form-row">
+                <!-- 科目選択 -->
+                <div class="form-group col-md-4">
+                    <label for="subjectCd">科目</label>
+                    <select name="subjectCd" id="subjectCd" class="form-control" required>
+                        <option value="">選択してください</option> <!-- 最初は何も選択されていない状態にする -->
+                        <c:forEach var="subject" items="${subjectList}">
+                            <option value="${subject.subjectCD}">${subject.subjectName}</option>
+                        </c:forEach>
+                    </select>
                 </div>
 
-                <!-- CSVデータを確認するためのボタン -->
-                <button type="button" class="btn btn-primary btn-lg mt-4" onclick="submitCsvData()">送信</button>
-            </form>
+                <!-- 登録月 -->
+                <div class="form-group col-md-4">
+                    <label for="regMonth">登録月</label>
+                    <input type="month" id="regMonth" name="regMonth" class="form-control" required>
+                </div>
+
+                <!-- CSVファイル選択 -->
+                <div class="form-group col-md-4">
+                    <label for="fileInput">CSVファイル</label>
+                    <input type="file" class="form-control-file" id="fileInput" name="fileInput" accept=".csv" onchange="handleFileSelect(event)" required>
+                </div>
+            </div>
+
+            <!-- CSVデータを確認するためのボタン -->
+            <button type="button" class="btn btn-primary btn-lg mt-4" onclick="showCsvData()">CSVデータ確認</button>
 
             <div id="csvPreview"></div>
         </div>
@@ -53,6 +51,7 @@
             let csvData = [];
 
             function handleFileSelect(event) {
+                console.log("handleFileSelectが実行されました ===========================")
                 const file = event.target.files[0];
                 const reader = new FileReader();
 
@@ -60,7 +59,7 @@
                     const content = e.target.result.trim();
                     const lines = content.split("\n");
 
-                    // CSVの各行を配列に格納
+                    // CSVの各行を配列に格納 (mapの代わりにforループを使用)
                     csvData = [];
                     for (let i = 0; i < lines.length; i++) {
                         const line = lines[i];
@@ -75,7 +74,9 @@
                 reader.readAsText(file);
             }
 
-            function submitCsvData() {
+            function showCsvData() {
+                console.log("showCsvDataが実行されました ===========================")
+
                 // 必要な入力がすべて揃っているかチェック
                 const subjectCd = document.getElementById("subjectCd").value;
                 const regMonth = document.getElementById("regMonth").value;
@@ -91,33 +92,12 @@
                     return;
                 }
 
-                // CSVデータをコンソールに表示
+                // コンソールにCSVデータを表示
                 console.log("CSV Data:", csvData);
 
-                // 送信するデータをJSON形式に変換
-                const jsonData = {
-                    subjectCd: subjectCd,
-                    regMonth: regMonth,
-                    csvData: csvData
-                };
-
-                // JSONデータをサーバーに送信
-                fetch('yourServletEndpoint', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("サーバーからのレスポンス:", data);
-                })
-                .catch(error => {
-                    console.error('エラー:', error);
-                });
             }
         </script>
 
     </c:param>
+
 </c:import>
