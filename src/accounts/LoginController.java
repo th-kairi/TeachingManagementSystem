@@ -1,16 +1,19 @@
 package accounts;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Staff;
 import dao.StaffDAO;
-import tool.CommonServlet;
 
 @WebServlet(urlPatterns = { "/accounts/login" })
-public class LoginController extends CommonServlet {
+public class LoginController  extends HttpServlet {
 
 	/*
 	 * (非 Javadoc)
@@ -19,7 +22,7 @@ public class LoginController extends CommonServlet {
 	 * javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("login.jsp").forward(req, resp);
 	}
 
@@ -30,7 +33,7 @@ public class LoginController extends CommonServlet {
 	 * javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
 
@@ -46,19 +49,24 @@ public class LoginController extends CommonServlet {
 			// 画面遷移
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
-		
+
 		// ログイン処理
 		StaffDAO staffDAO = new StaffDAO();
 		Staff staff = null;
-		
-		staff = staffDAO.getLoginUser(login, password);
-		
+
+		try {
+			staff = staffDAO.getLoginUser(login, password);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
 		if (staff == null) {
 			// ログイン失敗
-			
+
 			// メッセージの設定
 			req.setAttribute("errorMessage", "ユーザIDまたはパスワードが違います");
-			
+
 			// リクエスト属性の設定
 			req.setAttribute("login", login);
 

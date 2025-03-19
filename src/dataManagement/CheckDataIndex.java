@@ -4,10 +4,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tool.CommonServlet;
+import tool.DataManagementCommonServlet;
 
 @WebServlet(urlPatterns={"/dataManagement"})
-public class CheckDataIndex extends CommonServlet {
+public class CheckDataIndex extends DataManagementCommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {

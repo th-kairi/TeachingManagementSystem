@@ -11,14 +11,14 @@ import bean.Score;
 import bean.Student;
 import dao.ScoreDAO;
 import dao.StudentDAO;
-import tool.CommonServlet;
+import tool.DataManagementCommonServlet;
 
 /**
  * @author yamamoto
  * クラス別点数入力画面用
  */
 @WebServlet(urlPatterns = { "/DataManagement/StudentGradeRegistration" })
-public class StudentGradeRegistration extends CommonServlet {
+public class StudentGradeRegistration extends DataManagementCommonServlet {
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO 自動生成されたメソッド・スタブ

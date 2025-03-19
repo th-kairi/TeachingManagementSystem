@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * CoomonServlet extends HttpServlet 全サーブレット共通の処理を表す抽象クラス
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpSession;
  *@author admin
  *@version 1.0
  */
-public abstract class CommonServlet extends HttpServlet {
+public abstract class DataManagementCommonServlet extends HttpServlet {
 
 	/* (非 Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -23,26 +22,17 @@ public abstract class CommonServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("CommonServlet.doGet()が実行されました ================================================");
-		// ログインチェック
-		HttpSession session = req.getSession(false);
-		if (session != null && session.getAttribute("staff") != null) {
-			try {
-				get(req, resp);
-			} catch (Exception e) {
-				// 開発用エラー表示
-				PrintWriter out = resp.getWriter();
-				e.printStackTrace(out);
+		try {
+			get(req, resp);
+		} catch (Exception e) {
+			// 開発用エラー表示
+			PrintWriter out = resp.getWriter();
+			e.printStackTrace(out);
 
-				// 本番用エラー表示
-				// e.printStackTrace();
-				// resp.sendRedirect("/shop/error");
-			}
-		}else{
-			System.out.println("ログイン画面に遷移します");
-            resp.sendRedirect(req.getContextPath() + "/accounts/login");
-            return;
-        }
+			// 本番用エラー表示
+			// e.printStackTrace();
+			// resp.sendRedirect("/shop/error");
+		}
 
 	}
 

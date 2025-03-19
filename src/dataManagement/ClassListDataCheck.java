@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.ClassList;
 import dao.ClassListDAO;
-import tool.CommonServlet;
+import tool.DataManagementCommonServlet;
 
 @WebServlet(urlPatterns={"/dataManagement/ClassListDataCheck"})
-public class ClassListDataCheck extends CommonServlet {
+public class ClassListDataCheck extends DataManagementCommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
